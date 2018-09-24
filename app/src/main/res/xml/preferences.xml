@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:title="Choose your calendar csv file"
+        android:summary=""
+        android:key="filePicker"
+        />
+    <Preference
+        android:title="Open Selected File"
+        android:summary=""
+        android:key="fileOpen"
+        />
+    <Preference
+        android:title="Help"
+        android:summary=""
+        android:key="help"
+        />
+    <Preference
+        android:title="About"
+        android:summary=""
+        android:key="about"
+        />
+</PreferenceScreen>
