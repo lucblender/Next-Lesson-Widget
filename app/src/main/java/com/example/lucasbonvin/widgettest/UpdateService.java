@@ -23,6 +23,8 @@ import java.util.Map;
 
 public class UpdateService extends Service {
 
+    private static final String TAG = UpdateService.class.getName();
+
     public static final Map<String, String> staticDays = new HashMap<>();
 
     static {
@@ -102,7 +104,7 @@ public class UpdateService extends Service {
                 reader.close();Date dt = new Date();
 
                 //if lesson still not found -> mean it's maybe next day
-                while (lessonFound)
+                while (!lessonFound)
                 {
                     Calendar c = Calendar.getInstance();
                     c.setTime(dt);
