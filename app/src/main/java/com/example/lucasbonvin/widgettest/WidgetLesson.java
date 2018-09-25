@@ -7,10 +7,9 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-public class WidgetTest extends AppWidgetProvider {
+public class WidgetLesson extends AppWidgetProvider {
 
     private PendingIntent pendingIntent = null;
 
@@ -23,11 +22,12 @@ public class WidgetTest extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        for (int i = 0 ; i < appWidgetIds.length ; i++) {
-            // On crée la hiérarchie sous la forme d'un RemotViews
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
-            Intent intent = new Intent(context, MainActivity.class);
+        for (int i = 0 ; i < appWidgetIds.length ; i++) {
+            //get remote views
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+            //create an intent to open the main activity class
+            Intent intent = new Intent(context, ScreenSliderActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             // Get the layout for the App Widget and attach an on-click listener to the button
             views.setOnClickPendingIntent(R.id.mainLayout, pendingIntent);
@@ -35,6 +35,7 @@ public class WidgetTest extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetIds[i], views);
         }
 
+        //create the alarmManager that will update the widget with the help of a service
         final AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         final Intent i = new Intent(context, UpdateService.class);
 
@@ -42,8 +43,6 @@ public class WidgetTest extends AppWidgetProvider {
             pendingIntent = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
         }
         manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
-
-        Log.e("when?", "onUpdate: ");
         context.startService(new Intent(context, UpdateService.class));
 
 

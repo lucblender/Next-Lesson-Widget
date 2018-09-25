@@ -1,0 +1,296 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="3dp"
+    android:paddingTop="3dp"
+    android:weightSum="7">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeMon"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonMon"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationMon"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomMon"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeTue"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonTue"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationTue"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomTue"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeWed"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonWed"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationWed"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomWed"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeThu"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonThu"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationThu"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomThu"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeFri"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonFri"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationFri"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomFri"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeSat"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonSat"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationSat"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomSat"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/customborder"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeSun"
+            android:textColor="#ffffffff"
+            android:textSize="8dp"
+            android:text="00:00 00:00"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonSun"
+            android:textColor="#ffffffff"
+            android:textSize="12dp"
+            android:text="Lesson-name"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationSun"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="City"
+            android:gravity="center" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomSun"
+            android:textColor="#ffffffff"
+            android:textSize="10dp"
+            android:text="Room"
+            android:gravity="center" />
+    </LinearLayout>
+
+
+</LinearLayout>

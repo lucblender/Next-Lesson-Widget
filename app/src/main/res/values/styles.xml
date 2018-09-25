@@ -1,4 +1,4 @@
-<resources xmlns:app="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="ThemeOverlay.AppCompat.Dark">
         <!-- Customize your theme here. -->
@@ -11,6 +11,7 @@
         <item name="android:textColor">#c6c6c6</item>
         <item name="android:textColorPrimary">#939393</item>
         <item name="android:textColorSecondary">#545454</item>
+        <item name="preferenceTheme">@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar</item>
 
     </style>
 </resources>

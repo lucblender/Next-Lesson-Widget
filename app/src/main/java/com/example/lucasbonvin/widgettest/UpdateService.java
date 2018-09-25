@@ -13,7 +13,6 @@ import android.widget.RemoteViews;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,30 +43,28 @@ public class UpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        //get the view of the widget
         RemoteViews view = new RemoteViews(getPackageName(), R.layout.widget);
 
+        //get the csvfile
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String fileURI =  preferences.getString("filePicker","NA");
         String[] parsedUri = fileURI.split("\\.");
         String extension = parsedUri[parsedUri.length-1];
 
+        //if extension is correct --> parse it
         if(extension.compareTo("csv") == 0)
         {
             try
             {
                 CSVReader reader = new CSVReader(new FileReader(fileURI));
 
-                String [] nextline;
+                String [] nextLine;
                 String [] lessonData = null;
-
                 boolean lessonFound = false;
 
-                int l = 0;
-
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                //create a calender to get the the day of the week and actual time
                 Date date = new Date();
-
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
                 String dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
@@ -75,6 +72,7 @@ public class UpdateService extends Service {
                 int hours = calendar.get(Calendar.HOUR);
                 int min = calendar.get(Calendar.MINUTE);
 
+                //create a clendar with just the 'hour of now'
                 Calendar todayHours = Calendar.getInstance();
                 todayHours.set(Calendar.HOUR_OF_DAY,hours);
                 todayHours.set(Calendar.MINUTE, min);
@@ -82,49 +80,49 @@ public class UpdateService extends Service {
 
                 Calendar lessonHours = Calendar.getInstance();
 
-
-                while((nextline = reader.readNext()) != null)
+                //parse the csv file
+                while((nextLine = reader.readNext()) != null)
                 {
-                    if(nextline[0].compareTo(dayOfWeek)==0)
+                    if(nextLine[0].compareTo(dayOfWeek)==0)
                     {
-                        String[] parts = nextline[3].split(":");
+                        String[] parts = nextLine[3].split(":");
                         lessonHours.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
                         lessonHours.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
                         lessonHours.set(Calendar.SECOND, 0);
 
+                        //test if the lesson is before or after the actual time
+                        // if before --> mean we found the next lesson
                         if (todayHours.before(lessonHours)) {
                             lessonFound = true;
-                            lessonData = nextline;
+                            lessonData = nextLine;
                             break;
                         }
                     }
-
-
-                    l = l+1;
                 }
-
                 reader.close();Date dt = new Date();
 
-                while (lessonFound == false)
+                //if lesson still not found -> mean it's maybe next day
+                while (lessonFound)
                 {
-
                     Calendar c = Calendar.getInstance();
                     c.setTime(dt);
+                    //increment one day
                     c.add(Calendar.DATE, 1);
                     dt = c.getTime();
                     dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(dt);
 
+                    //if we are back to the day of today --> mean we already checked the full week
                     if(dayOfWeek.compareTo(saveDayOfWeek)==0)
                     {
                         lessonFound = true;
                     }
                     else {
-
+                        //parse in the file the next lesson
                         reader = new CSVReader(new FileReader(fileURI));
-                        while ((nextline = reader.readNext()) != null) {
-                            if (nextline[0].compareTo(dayOfWeek) == 0) {
+                        while ((nextLine = reader.readNext()) != null) {
+                            if (nextLine[0].compareTo(dayOfWeek) == 0) {
                                 lessonFound = true;
-                                lessonData = nextline;
+                                lessonData = nextLine;
                                 break;
                             }
                         }
@@ -134,6 +132,7 @@ public class UpdateService extends Service {
 
                 if(lessonData!=null)
                 {
+                    //fulfill the widget with correct data
                     view.setTextViewText(R.id.date,staticDays.get(lessonData[0]));
                     view.setTextViewText(R.id.time,lessonData[3]+ " - "+lessonData[4]);
                     view.setTextViewText(R.id.lesson,lessonData[1]);
@@ -142,13 +141,13 @@ public class UpdateService extends Service {
                 }
                 else
                 {
+                    //didn't find any lesson --> fulfill with warning message
                     setWarningText(view);
                 }
-
-
             }
             catch (Exception e)
             {
+                //if any error in the file --> fulfill with warning message
                 setWarningText(view);
                 e.printStackTrace();
 
@@ -156,13 +155,12 @@ public class UpdateService extends Service {
         }
         else
         {
+            //if file not csv --> fulfill with warning message
             setWarningText(view);
         }
 
-
-
-
-        ComponentName theWidget = new ComponentName(this, WidgetTest.class);
+        //update the widget
+        ComponentName theWidget = new ComponentName(this, WidgetLesson.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         manager.updateAppWidget(theWidget, view);
 
@@ -171,6 +169,7 @@ public class UpdateService extends Service {
 
     private void setWarningText(RemoteViews view)
     {
+        //warning message to show on the widget in any case of error
         view.setTextViewText(R.id.date,"Warning");
         view.setTextViewText(R.id.time," - ");
         view.setTextViewText(R.id.lesson,"File Error");
