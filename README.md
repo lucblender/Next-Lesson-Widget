@@ -1,8 +1,8 @@
-#Next Lesson Widget
+# Next Lesson Widget
 
 Simple android widget that tell the next lesson the user will follow based on a csv file containing his school program.
 
-##Csv file format
+## Csv file format
 
 - every line must describe a lesson
 - all lessons -> chronological order Monday to Sunday
@@ -11,10 +11,10 @@ Simple android widget that tell the next lesson the user will follow based on a 
 - lesson eg: 
     - "Wed,Sin,A205,8:45,11:10,Sion
         
-##User interface
-###Widget user interface:
+## User interface
+### Widget user interface:
 - Widget, next lesson
-###In app user interface:
+### In app user interface:
 - Main user interface:
     - Preferences
     - Choosing csv file
