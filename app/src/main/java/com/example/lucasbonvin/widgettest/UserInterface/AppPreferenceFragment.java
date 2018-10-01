@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest;
+package com.example.lucasbonvin.widgettest.UserInterface;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -19,6 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.lucasbonvin.widgettest.R;
+import com.example.lucasbonvin.widgettest.UpdateService;
 
 import java.io.File;
 
@@ -85,7 +88,10 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
                         "Main user interface:\n" +
                         "\t• Widget, next lesson\n" +
                         "Secondary user interface:\n" +
-                        "\t• Swipe right, full planner");
+                        "\t• Swipe right, full planner\n" +
+                        "\t\t• Planner editable\n" +
+                        "\t\t• Long click to delete\n" +
+                        "\t\t• Plus button to add\n");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {}
                 });

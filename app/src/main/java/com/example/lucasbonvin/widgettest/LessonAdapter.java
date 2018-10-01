@@ -1,17 +1,25 @@
 package com.example.lucasbonvin.widgettest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.lucasbonvin.widgettest.Data.DataCsvManager;
+import com.example.lucasbonvin.widgettest.Data.LessonLine;
 
-public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder>{
     private ArrayList<LessonLine> mLessonLines;
 
-    public LessonAdapter( ArrayList<LessonLine> lessonLines)
+    public LessonAdapter(ArrayList<LessonLine> lessonLines)
     {
         mLessonLines = lessonLines;
     }
@@ -78,7 +86,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         return mLessonLines.size();
     }
 
-    public class LessonViewHolder extends RecyclerView.ViewHolder{
+
+    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
+        private final String TAG = LessonViewHolder.class.getName();
 
         //create all textview and will link them to R
         public TextView timeMon;
@@ -116,9 +126,22 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         public TextView locationSun;
         public TextView roomSun;
 
+        public LinearLayout layoutMON;
+        public LinearLayout layoutTUE;
+        public LinearLayout layoutWED;
+        public LinearLayout layoutTHU;
+        public LinearLayout layoutFRI;
+        public LinearLayout layoutSAT;
+        public LinearLayout layoutSUN;
+
+        private final Map<Integer, String> idToDay = new HashMap<>();
+        private final Map<Integer, TextView> idToTimeTextView = new HashMap<>();
+        private final Map<Integer, TextView> idToLessonTextView = new HashMap<>();
 
         public LessonViewHolder(View itemView) {
+
             super(itemView);
+
             //link all text view
             timeMon = (TextView) itemView.findViewById(R.id.timeMon);
             lessonMon = (TextView) itemView.findViewById(R.id.lessonMon);
@@ -154,6 +177,83 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             lessonSun = (TextView) itemView.findViewById(R.id.lessonSun);
             locationSun = (TextView) itemView.findViewById(R.id.locationSun);
             roomSun = (TextView) itemView.findViewById(R.id.roomSun);
+
+            layoutMON = (LinearLayout) itemView.findViewById(R.id.layoutMON);
+            layoutTUE = (LinearLayout) itemView.findViewById(R.id.layoutTUE);
+            layoutWED = (LinearLayout) itemView.findViewById(R.id.layoutWED);
+            layoutTHU = (LinearLayout) itemView.findViewById(R.id.layoutTHU);
+            layoutFRI = (LinearLayout) itemView.findViewById(R.id.layoutFRI);
+            layoutSAT = (LinearLayout) itemView.findViewById(R.id.layoutSAT);
+            layoutSUN = (LinearLayout) itemView.findViewById(R.id.layoutSUN);
+
+            layoutMON.setOnLongClickListener(this);
+            layoutTUE.setOnLongClickListener(this);
+            layoutWED.setOnLongClickListener(this);
+            layoutTHU.setOnLongClickListener(this);
+            layoutFRI.setOnLongClickListener(this);
+            layoutSAT.setOnLongClickListener(this);
+            layoutSUN.setOnLongClickListener(this);
+
+            idToDay.put(R.id.layoutMON, "Mon");
+            idToDay.put(R.id.layoutTUE, "Tue");
+            idToDay.put(R.id.layoutWED, "Wed");
+            idToDay.put(R.id.layoutTHU, "Thu");
+            idToDay.put(R.id.layoutFRI, "Fri");
+            idToDay.put(R.id.layoutSAT, "Sat");
+            idToDay.put(R.id.layoutSUN, "Sun");
+
+            idToTimeTextView.put(R.id.layoutMON, timeMon);
+            idToTimeTextView.put(R.id.layoutTUE, timeTue);
+            idToTimeTextView.put(R.id.layoutWED, timeWed);
+            idToTimeTextView.put(R.id.layoutTHU, timeThu);
+            idToTimeTextView.put(R.id.layoutFRI, timeFri);
+            idToTimeTextView.put(R.id.layoutSAT, timeSat);
+            idToTimeTextView.put(R.id.layoutSUN, timeSun);
+
+            idToLessonTextView.put(R.id.layoutMON, lessonMon);
+            idToLessonTextView.put(R.id.layoutTUE, lessonTue);
+            idToLessonTextView.put(R.id.layoutWED, lessonWed);
+            idToLessonTextView.put(R.id.layoutTHU, lessonThu);
+            idToLessonTextView.put(R.id.layoutFRI, lessonFri);
+            idToLessonTextView.put(R.id.layoutSAT, lessonSat);
+            idToLessonTextView.put(R.id.layoutSUN, lessonSun);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+
+            final int position = this.getLayoutPosition();
+            final View view = v;
+            switch (v.getId())
+            {
+                case R.id.layoutMON:
+                case R.id.layoutTUE:
+                case R.id.layoutWED:
+                case R.id.layoutTHU:
+                case R.id.layoutFRI:
+                case R.id.layoutSAT:
+                case R.id.layoutSUN:
+                    //when clicked on a layout, will check if the hours is not '-' --> mean lesson
+                    if(!idToTimeTextView.get(v.getId()).getText().toString().equals(" - "))
+                    {
+                        //setup a popup to prevent miss-click
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setTitle("Delete");
+                        builder.setMessage("Are you sure you want to delete \""+idToLessonTextView.get(view.getId()).getText()+"\" ?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                DataCsvManager.getInstance().deleteLine(view.getContext(),idToDay.get(view.getId()), position);
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+                        builder.show();
+                    }
+                    return true;
+            }
+            return false;
         }
     }
 }

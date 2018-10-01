@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest;
+package com.example.lucasbonvin.widgettest.UserInterface;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,6 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.widget.RemoteViews;
+
+import com.example.lucasbonvin.widgettest.R;
+import com.example.lucasbonvin.widgettest.UpdateService;
 
 public class WidgetLesson extends AppWidgetProvider {
 

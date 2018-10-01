@@ -12,6 +12,5 @@
         <item name="android:textColorPrimary">#939393</item>
         <item name="android:textColorSecondary">#545454</item>
         <item name="preferenceTheme">@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar</item>
-
     </style>
 </resources>

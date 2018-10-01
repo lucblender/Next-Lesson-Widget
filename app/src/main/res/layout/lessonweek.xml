@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutMON">
 
         <TextView
             android:layout_width="fill_parent"
@@ -53,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutTUE">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -93,7 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutWED">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -133,7 +136,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutTHU">
 
 
         <TextView
@@ -175,7 +179,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutFRI">
 
         <TextView
             android:layout_width="fill_parent"
@@ -216,7 +221,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutSAT">
 
         <TextView
             android:layout_width="fill_parent"
@@ -257,7 +263,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/customborder"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/layoutSUN">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

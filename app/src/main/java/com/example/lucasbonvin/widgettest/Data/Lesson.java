@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest;
+package com.example.lucasbonvin.widgettest.Data;
 
 public class Lesson {
     //all parameter of lesson
