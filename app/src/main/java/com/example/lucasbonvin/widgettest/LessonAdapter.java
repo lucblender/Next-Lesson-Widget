@@ -178,6 +178,30 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             locationSun = (TextView) itemView.findViewById(R.id.locationSun);
             roomSun = (TextView) itemView.findViewById(R.id.roomSun);
 
+            lessonMon.setSelected(true);
+            lessonTue.setSelected(true);
+            lessonWed.setSelected(true);
+            lessonThu.setSelected(true);
+            lessonFri.setSelected(true);
+            lessonSat.setSelected(true);
+            lessonSun.setSelected(true);
+
+            locationMon.setSelected(true);
+            locationTue.setSelected(true);
+            locationWed.setSelected(true);
+            locationThu.setSelected(true);
+            locationFri.setSelected(true);
+            locationSat.setSelected(true);
+            locationSun.setSelected(true);
+
+            roomMon.setSelected(true);
+            roomTue.setSelected(true);
+            roomWed.setSelected(true);
+            roomThu.setSelected(true);
+            roomFri.setSelected(true);
+            roomSat.setSelected(true);
+            roomSun.setSelected(true);
+
             layoutMON = (LinearLayout) itemView.findViewById(R.id.layoutMON);
             layoutTUE = (LinearLayout) itemView.findViewById(R.id.layoutTUE);
             layoutWED = (LinearLayout) itemView.findViewById(R.id.layoutWED);
