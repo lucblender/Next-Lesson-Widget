@@ -3,13 +3,16 @@ package com.example.lucasbonvin.widgettest.UserInterface;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -32,10 +35,39 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private Button buttonAdd;
     private Button buttonCancel;
 
+    private String dayModify;
+    private String lessonName;
+    private String startHour;
+    private String endHour;
+    private String city;
+    private String room;
+    private int lessonLineToDelete;
+    private boolean modifyMode;
+
 
     public AddLessonDialog(Activity activity) {
         super(activity);
+        modifyMode = false;
     }
+
+    public AddLessonDialog(Context context) {
+        super(context);
+        modifyMode = false;
+    }
+
+    public void initEditText(String dayModify, String lessonName, String startHour, String endHour, String city, String room, int lessonLineToDelete)
+    {
+        modifyMode = true;
+        this.dayModify = dayModify;
+        this.lessonName = lessonName;
+        this.startHour = startHour;
+        this.endHour = endHour;
+        this.city = city;
+        this.room = room;
+        this.lessonLineToDelete = lessonLineToDelete;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +127,18 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
         buttonAdd.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
+
+        if(modifyMode)
+        {
+            ((TextView)findViewById(R.id.addLessonTitle)).setText("Modify Lesson");
+            buttonAdd.setText("Modify");
+            spinnerDay.setSelection(arrayAdapter.getPosition(dayModify));
+            editTextLessonName.setText(lessonName);
+            editTextCity.setText(city);
+            editTextStartHour.setText(startHour);
+            editTextEndHour.setText(endHour);
+            editTextRoom.setText(room);
+        }
     }
 
 
@@ -116,13 +160,25 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                 String city = editTextCity.getText().toString();
                 String day = spinnerDay.getSelectedItem().toString();
 
-                if(DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day))
+                if(modifyMode)
                 {
-                    this.dismiss();
+                    if(DataCsvManager.getInstance().isLessonAddable(getContext(), startHour, endHour)) {
+                        boolean a = DataCsvManager.getInstance().deleteLine(getContext(), dayModify, lessonLineToDelete);
+                        Log.e(TAG, String.valueOf(a) );
+                        DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day);
+                        this.dismiss();
+                    }
+                    else {
+                        message("Lesson Format or csv file is not correct");
+                    }
                 }
-                else
-                {
-                    message("Lesson Format is not correct, check hours");
+                else {
+
+                    if (DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day)) {
+                        this.dismiss();
+                    } else {
+                        message("Lesson Format or csv file is not correct");
+                    }
                 }
                 break;
             case R.id.buttonCancel:
