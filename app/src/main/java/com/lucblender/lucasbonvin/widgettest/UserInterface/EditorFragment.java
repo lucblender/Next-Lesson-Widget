@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest.UserInterface;
+package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lucasbonvin.widgettest.Data.DataCsvManager;
-import com.example.lucasbonvin.widgettest.Data.LessonLine;
-import com.example.lucasbonvin.widgettest.LessonAdapter;
-import com.example.lucasbonvin.widgettest.R;
-import com.example.lucasbonvin.widgettest.UpdateService;
+import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
+import com.lucblender.lucasbonvin.widgettest.Data.LessonLine;
+import com.lucblender.lucasbonvin.widgettest.LessonAdapter;
+import com.lucblender.lucasbonvin.widgettest.R;
+import com.lucblender.lucasbonvin.widgettest.UpdateService;
 
 import java.util.ArrayList;
 import java.util.Observable;

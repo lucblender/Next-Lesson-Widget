@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest.UserInterface;
+package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.widget.RemoteViews;
 
-import com.example.lucasbonvin.widgettest.R;
-import com.example.lucasbonvin.widgettest.UpdateService;
+import com.lucblender.lucasbonvin.widgettest.R;
+import com.lucblender.lucasbonvin.widgettest.UpdateService;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class WidgetLesson extends AppWidgetProvider {
 
@@ -43,12 +46,16 @@ public class WidgetLesson extends AppWidgetProvider {
         final Intent i = new Intent(context, UpdateService.class);
 
         if (pendingIntent == null) {
-            pendingIntent = PendingIntent.getService(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+            pendingIntent = PendingIntent.getService(context, 125, i, PendingIntent.FLAG_CANCEL_CURRENT);
         }
-        manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MINUTE,1);
+        //manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),1*60*1000, pendingIntent);
+        //manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         context.startService(new Intent(context, UpdateService.class));
-
-
     }
 
     @Override

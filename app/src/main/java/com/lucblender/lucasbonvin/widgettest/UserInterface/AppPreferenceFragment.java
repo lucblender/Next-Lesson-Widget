@@ -1,18 +1,18 @@
-package com.example.lucasbonvin.widgettest.UserInterface;
+package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.LayoutInflater;
@@ -20,20 +20,72 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.lucasbonvin.widgettest.R;
-import com.example.lucasbonvin.widgettest.UpdateService;
+import com.lucblender.lucasbonvin.widgettest.R;
+import com.nbsp.materialfilepicker.MaterialFilePicker;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
-public class AppPreferenceFragment extends PreferenceFragmentCompat{
+public class AppPreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     private static final String TAG = AppPreferenceFragment.class.getName();
     private static final int requestCodeFilePicker = 125;
+
+    private PreferenceListener mListener;
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
+        switch (key)
+        {
+            case "filePicker" :
+                Preference pref_file = findPreference("filePicker");
+                pref_file.setSummary(preferences.getString("filePicker","NA"));
+                break;
+        }
+    }
+
+    public interface PreferenceListener{
+        //interface used to transmit to the main activity the parameters update
+        public void updateLanguage(String lang);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         //Set the preference from xml
         setPreferencesFromResource(R.xml.preferences, rootKey);
+
+        //get the language field and build a preference change listener
+        ListPreference languagePref = (ListPreference) findPreference("param_language");
+        languagePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String newValueStr = (String) newValue;
+                mListener.updateLanguage(newValueStr);
+                return true;
+            }
+        });
+
+
+        SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
+        preferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (PreferenceListener) context;
+        } catch ( ClassCastException e) {
+            throw new ClassCastException( context.toString()
+                    + " must implement AppPreferenceFragment.PreferenceListener") ;
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override
@@ -44,9 +96,18 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //create an intent to open a file browser
+                /*
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT); //Intent to start openIntents File Manager
-                intent.setType("file/*");
-                startActivityForResult(intent, requestCodeFilePicker);
+                intent.setType("text/csv");
+                startActivityForResult(intent, requestCodeFilePicker);*/
+                new MaterialFilePicker()
+                        .withActivity(getActivity())
+                        .withRequestCode(requestCodeFilePicker)
+                        .withFilter(Pattern.compile(".*\\.csv$")) // Filtering files and directories by file name using regexp
+                        .withFilterDirectories(false) // Set directories filterable (false by default)
+                        .withHiddenFiles(true) // Show hidden files and folders
+                        .start();
+
                 return true;
             }
         });
@@ -59,11 +120,11 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
                 //create an intent to open a file
                 Intent myIntent = new Intent(Intent.ACTION_VIEW);
                 //get the path of file stored in the preference and launch the intent
-                SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();;
+                SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
                 File toto = new File(preferences.getString("filePicker","NA"));
                 myIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 myIntent.setData(FileProvider.getUriForFile(getContext(),
-                        getContext().getPackageName()+".com.example.lucasbonvin",
+                        getContext().getPackageName()+".com.lucblender.lucasbonvin",
                         toto));
                 startActivity(myIntent);
                 return true;
@@ -77,24 +138,8 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
             public boolean onPreferenceClick(Preference preference) {
                 //create a popup with help message
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Help");
-                builder.setMessage("Your csv file must be formated as specified:\n" +
-                        "\t• every line must describe a lesson\n" +
-                        "\t• all lessons -> chronological order\n" +
-                        "\t• the format of a line is: \n" +
-                        "DDD,lessonName,Room,hh:mm start,hh:mm end,Location\n" +
-                        "\t• lesson eg: \n" +
-                        "Wed,Sin,A205,8:45,11:10,Sion\n\n" +
-                        "Main user interface:\n" +
-                        "\t• Widget, next lesson\n" +
-                        "Secondary user interface:\n" +
-                        "\t• Swipe right, full planner\n" +
-                        "\t\t• Planner editable\n" +
-                        "\t\t• Long click to delete\n" +
-                        "\t\t• Plus button to add\n");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {}
-                });
+                builder.setTitle(R.string.help_title);
+                builder.setMessage(getString(R.string.help_text));
                 builder.show();
                 return true;
             }
@@ -107,17 +152,8 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //create a popup with Lesson message
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("About");
-                builder.setMessage("Lesson planning widget\n" +
-                        "Made by Lucas Bonvin\n" +
-                        "Code available on github: lucblender\n" +
-                        "Free to use and modify");
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {}
-                });
-                builder.show();
+                AboutDialog aboutDialog = new AboutDialog(getActivity());
+                aboutDialog.show();
                 return true;
             }
         });
@@ -144,11 +180,11 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
                 //show a message depending of the result of the request
                 if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    message("Permission granted");
+                    message(getString(R.string.permission_granted));
                 }
                 else
                 {
-                    message("Permission to access your media not granted!");
+                    message(getString(R.string.permission_not_granted));
                     getActivity().finish();
                 }
                 break;
@@ -164,24 +200,7 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //get the new value from Intent data
-        if(requestCode == requestCodeFilePicker)
-        {
-            //if the intent return data
-            if(data!= null){
-                //convert the URI to a correct file path
-                String newValue = data.getData().getPath().replace("/storage_root", Environment.getExternalStorageDirectory().toString());
-                //Get back the storage reference and store the file path
-                SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("filePicker", newValue);
-                editor.apply();
-                Preference pref = findPreference("filePicker");
-                pref.setSummary(preferences.getString("filePicker", "NA"));
-                //call the service that update the widget from the selected file
-                getActivity().startService(new Intent(getActivity(), UpdateService.class));
-            }
 
-        }
+
     }
 }

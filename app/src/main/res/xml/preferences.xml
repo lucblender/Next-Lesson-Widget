@@ -2,23 +2,33 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
-        android:title="Choose your calendar csv file"
-        android:summary=""
+        android:title="@string/choose_csv"
+        android:summary="%s"
         android:key="filePicker"
         />
     <Preference
-        android:title="Open Selected File"
+        android:title="@string/open_file"
         android:summary=""
         android:key="fileOpen"
         />
+    <ListPreference
+        android:key="param_language"
+        android:title="@string/change_language"
+        android:defaultValue="1"
+        android:entries="@array/list_lang_entries"
+        android:entryValues="@array/list_lang_values"
+        android:summary="%s"
+        />
     <Preference
-        android:title="Help"
+        android:title="@string/help"
         android:summary=""
         android:key="help"
         />
     <Preference
-        android:title="About"
+        android:title="@string/about"
         android:summary=""
         android:key="about"
         />
+    <Preference
+        android:layout="@layout/custom_preference"/>
 </PreferenceScreen>

@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest;
+package com.lucblender.lucasbonvin.widgettest;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,7 +16,7 @@ import org.acra.data.StringFormat;
 
 //Configured like so: E-mail from dialog box
 @AcraMailSender(mailTo = "lucasbonvin@hotmail.com")
-@AcraDialog(resText = R.string.resText,resTitle = R.string.resTitle)
+@AcraDialog(resText = com.lucblender.lucasbonvin.widgettest.R.string.resText,resTitle = com.lucblender.lucasbonvin.widgettest.R.string.resTitle)
 
 public class MyApplication extends Application {
 

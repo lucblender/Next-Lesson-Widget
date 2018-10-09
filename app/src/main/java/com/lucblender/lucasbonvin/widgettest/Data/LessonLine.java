@@ -1,4 +1,4 @@
-package com.example.lucasbonvin.widgettest.Data;
+package com.lucblender.lucasbonvin.widgettest.Data;
 
 public class LessonLine {
 

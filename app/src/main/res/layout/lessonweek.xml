@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutMON">
 
@@ -30,6 +30,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -38,6 +44,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -46,6 +58,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,7 +71,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutTUE">
         <TextView
@@ -71,6 +89,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -79,6 +103,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -87,6 +117,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -94,7 +130,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutWED">
         <TextView
@@ -112,6 +148,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -120,6 +162,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -128,6 +176,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -135,7 +189,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutTHU">
 
@@ -155,6 +209,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -163,6 +223,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -171,6 +237,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -178,7 +250,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutFRI">
 
@@ -197,6 +269,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -205,6 +283,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -213,6 +297,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -220,7 +310,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutSAT">
 
@@ -239,6 +329,12 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -247,6 +343,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -255,6 +357,12 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -262,7 +370,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/customborder"
+        android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
         android:id="@+id/layoutSUN">
         <TextView
@@ -280,6 +388,8 @@
             android:textColor="#ffffffff"
             android:textSize="12dp"
             android:text="Lesson-name"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -288,6 +398,8 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="City"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
             android:gravity="center" />
         <TextView
             android:layout_width="fill_parent"
@@ -296,6 +408,8 @@
             android:textColor="#ffffffff"
             android:textSize="10dp"
             android:text="Room"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
             android:gravity="center" />
     </LinearLayout>
 

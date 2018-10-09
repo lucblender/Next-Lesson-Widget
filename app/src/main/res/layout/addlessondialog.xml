@@ -1,14 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:layout_width="220dp"
+    android:layout_width="250dp"
     android:orientation="vertical"
-    android:weightSum="7">
+    android:weightSum="7"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add a lesson"
-        android:textSize="15dp"
-        android:layout_weight="1"/>
+        android:text="@string/add_lesson"
+        android:textSize="20dp"
+        android:layout_weight="1"
+        android:id="@+id/addLessonTitle"/>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -18,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Lesson name"/>
+            android:text="@string/lesson_name"/>
         <EditText
             android:id="@+id/editTextLessonName"
             android:layout_width="150dp"
@@ -35,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Day"
+            android:text="@string/day"
             />
 
         <Spinner
@@ -53,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Start hour"
+            android:text="@string/start_hour"
             />
         <EditText
             android:id="@+id/editTextStartHour"
@@ -71,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="End hour"
+            android:text="@string/end_hour"
             />
         <EditText
             android:id="@+id/editTextEndHour"
@@ -89,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="City"
+            android:text="@string/city"
             />
         <EditText
             android:id="@+id/editTextCity"
@@ -106,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Room"
+            android:text="@string/room"
             />
         <EditText
             android:id="@+id/editTextRoom"
@@ -125,16 +130,18 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:layout_weight="1"
-            android:text="Add"
-            android:id="@+id/buttonAdd"/>
+            android:text="@string/add"
+            android:id="@+id/buttonAdd"
+            android:backgroundTint="@color/colorAccent"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:layout_weight="1"
-            android:text="Cancel"
-            android:id="@+id/buttonCancel"/>
+            android:text="@string/cancel"
+            android:id="@+id/buttonCancel"
+            android:backgroundTint="@color/colorAccent"/>
     </LinearLayout>
 
 

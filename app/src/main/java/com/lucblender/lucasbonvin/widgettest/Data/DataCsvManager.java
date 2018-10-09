@@ -1,7 +1,8 @@
-package com.example.lucasbonvin.widgettest.Data;
+package com.lucblender.lucasbonvin.widgettest.Data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 
 import com.opencsv.CSVReader;
@@ -113,7 +114,14 @@ public class DataCsvManager extends Observable{
                 room="-";
             if(city.compareTo("")==0)
                 city="-";
-            String csvLine= String.format("%s,%s,%s,%s,%s,%s",day,lesson,room,startHour,endHour,city);
+            String[] csvLine = new String[6];
+            csvLine[0]=day;
+            csvLine[1]=lesson;
+            csvLine[2]=room;
+            csvLine[3]=startHour;
+            csvLine[4]=endHour;
+            csvLine[5]=city;
+            //String csvLine= String.format("%s,%s,%s,%s,%s,%s",day,lesson,room,startHour,endHour,city);
 
             FileUriExtension  fileUriExtension = getCsvFile(context);
 
@@ -169,7 +177,8 @@ public class DataCsvManager extends Observable{
                 if(found == false)
                     lineToAppend = lineToAppend+1;
 
-                lines.add(lineToAppend,csvLine.split(","));
+                lines.add(lineToAppend,csvLine);
+                //lines.add(lineToAppend,csvLine.split(","));
                 File outFile = new File(fileUriExtension.URI);
 
                 // delete out file if it exists
@@ -192,6 +201,38 @@ public class DataCsvManager extends Observable{
         }
         else
         {
+            return false;
+        }
+    }
+
+    public boolean isLessonAddable(Context context, String startHour, String endHour)
+    {
+        Pattern p = Pattern.compile(".*([01]?[0-9]|2[0-3]):[0-5][0-9].*");
+        Matcher mStart = p.matcher(startHour);
+        Matcher mEnd = p.matcher(endHour);
+        FileUriExtension  fileUriExtension = getCsvFile(context);
+
+        if(fileUriExtension.Extension.compareTo("csv") == 0) {
+            try {
+                CSVReader totoR = new CSVReader(new FileReader(fileUriExtension.URI));
+                totoR.close();
+            } catch (Exception e) {
+                //cannot open file
+                return false;
+            }
+        }
+        else
+        {
+            //file not csv
+            return false;
+        }
+
+        if(mStart.matches() && mEnd.matches())
+        {
+            return true;
+        }
+        else {
+            //hours wrong format
             return false;
         }
     }
@@ -371,6 +412,31 @@ public class DataCsvManager extends Observable{
         //get the csv file from preferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         prefFile.URI  = preferences.getString("filePicker", "NA");
+
+        if(prefFile.URI=="NA")
+        {
+            File folder = new File(Environment.getExternalStorageDirectory()+"/data");
+            if(!folder.exists())
+                folder.mkdir();
+
+            File file = new File(Environment.getExternalStorageDirectory()+"/data/myFirstPlanning.csv");
+            try {
+                if (!file.exists())
+                    file.createNewFile();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            prefFile.URI = file.getAbsolutePath();
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("filePicker", prefFile.URI);
+            editor.apply();
+        }
+
+
+
         String[] parsedUri = prefFile.URI.split("\\.");
         //get the extension
         prefFile.Extension = parsedUri[parsedUri.length - 1];

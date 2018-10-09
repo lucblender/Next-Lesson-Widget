@@ -1,11 +1,10 @@
-package com.example.lucasbonvin.widgettest.UserInterface;
+package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -16,8 +15,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.lucasbonvin.widgettest.Data.DataCsvManager;
-import com.example.lucasbonvin.widgettest.R;
+import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
+import com.lucblender.lucasbonvin.widgettest.R;
 
 import java.util.ArrayList;
 
@@ -103,7 +102,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                         editTextStartHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
                     }
                 }, 8, 0, true);//24 hour time
-                mTimePicker.setTitle("Select start lesson time");
+                mTimePicker.setTitle(getContext().getString(R.string.select_start_time));
                 mTimePicker.show();
             }
         });
@@ -117,7 +116,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                         editTextEndHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
                     }
                 }, 8, 0, true);//24 hour time
-                mTimePicker.setTitle("Select end lesson time");
+                mTimePicker.setTitle(getContext().getString(R.string.select_end_time));
                 mTimePicker.show();
             }
         });
@@ -130,8 +129,8 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
         if(modifyMode)
         {
-            ((TextView)findViewById(R.id.addLessonTitle)).setText("Modify Lesson");
-            buttonAdd.setText("Modify");
+            ((TextView)findViewById(R.id.addLessonTitle)).setText(R.string.modify_title);
+            buttonAdd.setText(R.string.modify_button);
             spinnerDay.setSelection(arrayAdapter.getPosition(dayModify));
             editTextLessonName.setText(lessonName);
             editTextCity.setText(city);
@@ -162,22 +161,22 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
                 if(modifyMode)
                 {
+                    //if in modify --> check if we can add lesson, then delete previous lesson to add the modified one
                     if(DataCsvManager.getInstance().isLessonAddable(getContext(), startHour, endHour)) {
-                        boolean a = DataCsvManager.getInstance().deleteLine(getContext(), dayModify, lessonLineToDelete);
-                        Log.e(TAG, String.valueOf(a) );
+                        DataCsvManager.getInstance().deleteLine(getContext(), dayModify, lessonLineToDelete);
                         DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day);
                         this.dismiss();
                     }
                     else {
-                        message("Lesson Format or csv file is not correct");
+                        message(getContext().getString(R.string.lesson_format_csv_error));
                     }
                 }
                 else {
-
+                    //if not in modify --> just try to add the lesson
                     if (DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day)) {
                         this.dismiss();
                     } else {
-                        message("Lesson Format or csv file is not correct");
+                        message(getContext().getString(R.string.lesson_format_csv_error));
                     }
                 }
                 break;

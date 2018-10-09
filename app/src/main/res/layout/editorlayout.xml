@@ -16,49 +16,49 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mon"
+                android:text="@string/mon"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tue"
+                android:text="@string/tue"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wed"
+                android:text="@string/wed"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thu"
+                android:text="@string/thu"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fri"
+                android:text="@string/fri"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sat"
+                android:text="@string/sat"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sun"
+                android:text="@string/sun"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
         </LinearLayout>
