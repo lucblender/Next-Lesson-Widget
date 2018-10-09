@@ -5,7 +5,12 @@ repositories {
         url  "http://dl.bintray.com/lukaville/maven"
     }
 }
-
+configurations {
+    all {
+        exclude module: 'httpclient'
+        exclude module: 'commons-logging'
+    }
+}
 android {
     compileSdkVersion 27
     compileOptions {

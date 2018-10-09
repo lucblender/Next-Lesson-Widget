@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
@@ -44,7 +43,6 @@ public class UpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.e(TAG, "onStartCommand");
         //get the view of the widget
         RemoteViews view = new RemoteViews(getPackageName(), com.lucblender.lucasbonvin.widgettest.R.layout.widget);
         String [] lessonData = DataCsvManager.getInstance().nextLessonFromCsv(this);

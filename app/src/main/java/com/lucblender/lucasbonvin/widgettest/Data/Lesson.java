@@ -1,7 +1,5 @@
 package com.lucblender.lucasbonvin.widgettest.Data;
 
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,7 +45,6 @@ public class Lesson {
 
         if(dayOfWeek.compareTo(this.day)==0)
         {
-            Log.e("a", "isDayToday: "+this.day+dayOfWeek );
             return true;
         }
         else
@@ -90,23 +87,19 @@ public class Lesson {
                 lessonHoursEnd.set(Calendar.SECOND, 0);
 
                 if (todayHours.after(lessonHoursStart) && todayHours.before(lessonHoursEnd)) {
-                    Log.e("a", "isLessonNow: true" );
                     return true;
                 }
                 else
                 {
-                    Log.e("a", "isLessonNow: 1" );
                     return false;
                 }
             }
             else
             {
-                Log.e("a", "isLessonNow: 2" );
                 return false;
             }
         }
         else {
-            Log.e("a", "isLessonNow: 3" );
             return false;
         }
     }

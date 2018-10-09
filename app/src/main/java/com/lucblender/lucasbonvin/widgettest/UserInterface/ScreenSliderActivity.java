@@ -13,7 +13,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.lucblender.lucasbonvin.widgettest.R;
 import com.lucblender.lucasbonvin.widgettest.UpdateService;
@@ -112,7 +111,6 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         //get the new value from Intent data
         if (requestCode == requestCodeFilePicker && resultCode == RESULT_OK) {
             String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-            Log.e(TAG, filePath );
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
             SharedPreferences.Editor editor = preferences.edit();
