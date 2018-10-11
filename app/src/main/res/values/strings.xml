@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson Planning Widget</string>
+    <string name="app_name">Next Lesson Widget</string>
     <string name="resTitle">Next lesson widget crash</string>
     <string name="resText">Would you like to send a bug report to the developper?</string>
     <string name="resChannelName" translatable="false">resChannelName</string>
@@ -10,22 +10,16 @@
     <string name="select_start_time">Select start lesson time</string>
     <string name="modify_button">Modify</string>
     <string name="modify_title">Modify Lesson</string>
-    <string name="help_text">
-        "Your csv file must be formatted as specified:
-        \t • every line must describe a lesson
-        \t• all lessons -> chronological order
-        \t• the format of a line is:
-        DDD,lessonName,Room,hh:mm start,hh:mm end,Location
-        \t• lesson eg:
-        Wed,Sin,A205,8:45,11:10,Sion
-        Main user interface:
-        \t• Widget, next lesson
-        Secondary user interface:
-        \t• Swipe right, full planner
-        \t\t• Planner editable
-        \t\t• Simple click to modify
-        \t\t• Long click to delete
-        \t\t• Plus button to add "</string>
+    <string name="help_text_1">Widget user interface:</string>
+    <string name="help_text_2">• Widget, next lesson</string>
+    <string name="help_text_3">Planner user interface:</string>
+    <string name="help_text_4">• Swipe right, full planner</string>
+    <string name="help_text_5">• Planner editable</string>
+    <string name="help_text_6">• Plus button to add</string>
+    <string name="help_text_7">• Long click to:</string>
+    <string name="help_text_8">• Delete lesson</string>
+    <string name="help_text_9">• Modify Lesson</string>
+    <string name="help_text_10">• Duplicate Lesson</string>
     <string name="help_title">Help</string>
     <string name="permission_granted">Permission granted</string>
     <string name="permission_not_granted">Permission to access your media not granted!</string>
@@ -73,7 +67,11 @@
         <item>fr</item>
     </string-array>
     <string name="version" translatable="false">alpha 1.2</string>
-    <string name="send_file">Send file</string>
+    <string name="send_file">Send planning</string>
     <string name="duplicate_lesson">Duplicate Lesson</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="modify">Modify</string>
+    <string name="open_csv">Open the csv planning file with dedicated app</string>
+    <string name="send_planning">Send your planning file to someone else</string>
 
 </resources>

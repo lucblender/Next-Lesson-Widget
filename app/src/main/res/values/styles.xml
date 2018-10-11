@@ -8,19 +8,21 @@
 
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:popupBackground">@color/colorPrimaryDark</item>
-        <item name="android:textColor">#c6c6c6</item>
-        <item name="android:textColorPrimary">#939393</item>
-        <item name="android:textColorSecondary">#545454</item>
-        <item name="preferenceTheme">@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:textColor">@color/colorTextMain</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="preferenceTheme">@style/Preference.Widget.App</item>
         <item name="actionBarStyle">@style/Widget.AppTheme.ActionBar</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppTheme.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppTheme.PopupMenu</item>
         <item name="textColorAlertDialogListItem">#939393</item>
 
+
     </style>
 
 
-
+    <style name="Preference.Widget.App" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
 
     <style name="Widget.AppTheme.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
         <!-- action bar background - without android prefix -->

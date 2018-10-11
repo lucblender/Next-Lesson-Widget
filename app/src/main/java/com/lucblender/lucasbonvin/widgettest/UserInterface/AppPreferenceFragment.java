@@ -1,7 +1,6 @@
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -172,10 +171,8 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 //create a popup with help message
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.help_title);
-                builder.setMessage(getString(R.string.help_text));
-                builder.show();
+                HelpDialog helpDialog = new HelpDialog(getActivity());
+                helpDialog.show();
                 return true;
             }
         });

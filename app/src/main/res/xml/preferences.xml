@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
     <Preference
         android:title="@string/choose_csv"
         android:summary="%s"
@@ -8,12 +7,12 @@
         />
     <Preference
         android:title="@string/open_file"
-        android:summary="Open the csv planning file with dedicated app"
+        android:summary="@string/open_csv"
         android:key="fileOpen"
         />
     <Preference
     android:title="@string/send_file"
-    android:summary="Send your planning file to someone else"
+    android:summary="@string/send_planning"
     android:key="sendFile"
     />
     <ListPreference
