@@ -423,16 +423,18 @@ public class DataCsvManager extends Observable{
             try {
                 if (!file.exists())
                     file.createNewFile();
+                prefFile.URI = file.getAbsolutePath();
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("filePicker", prefFile.URI);
+                editor.apply();
             }
             catch (Exception e)
             {
                 e.printStackTrace();
+                prefFile.URI = "NA";
             }
-            prefFile.URI = file.getAbsolutePath();
 
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("filePicker", prefFile.URI);
-            editor.apply();
         }
 
 
