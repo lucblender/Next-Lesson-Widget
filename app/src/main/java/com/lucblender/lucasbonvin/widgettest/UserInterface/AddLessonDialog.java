@@ -41,22 +41,29 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private String city;
     private String room;
     private int lessonLineToDelete;
-    private boolean modifyMode;
+
+    enum modifyMode {
+        MODIFY,
+        ADD,
+        DUPLICATE
+    }
+
+    private modifyMode mode;
 
 
     public AddLessonDialog(Activity activity) {
         super(activity);
-        modifyMode = false;
+        mode = modifyMode.ADD;
     }
 
     public AddLessonDialog(Context context) {
         super(context);
-        modifyMode = false;
+        mode = modifyMode.ADD;
     }
 
     public void initEditText(String dayModify, String lessonName, String startHour, String endHour, String city, String room, int lessonLineToDelete)
     {
-        modifyMode = true;
+        mode = modifyMode.MODIFY;
         this.dayModify = dayModify;
         this.lessonName = lessonName;
         this.startHour = startHour;
@@ -64,6 +71,17 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         this.city = city;
         this.room = room;
         this.lessonLineToDelete = lessonLineToDelete;
+    }
+
+    public void initEditText(String dayModify, String lessonName, String startHour, String endHour, String city, String room)
+    {
+        mode = modifyMode.DUPLICATE;
+        this.dayModify = dayModify;
+        this.lessonName = lessonName;
+        this.startHour = startHour;
+        this.endHour = endHour;
+        this.city = city;
+        this.room = room;
     }
 
 
@@ -143,7 +161,18 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         buttonAdd.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
 
-        if(modifyMode)
+        if(mode == modifyMode.DUPLICATE)
+        {
+            ((TextView)findViewById(R.id.addLessonTitle)).setText(R.string.duplicate_lesson);
+            buttonAdd.setText(R.string.add);
+            spinnerDay.setSelection(arrayAdapter.getPosition(dayModify));
+            editTextLessonName.setText(lessonName);
+            editTextCity.setText(city);
+            editTextStartHour.setText(startHour);
+            editTextEndHour.setText(endHour);
+            editTextRoom.setText(room);
+        }
+        else if(mode == modifyMode.MODIFY)
         {
             ((TextView)findViewById(R.id.addLessonTitle)).setText(R.string.modify_title);
             buttonAdd.setText(R.string.modify_button);
@@ -175,25 +204,35 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                 String city = editTextCity.getText().toString();
                 String day = spinnerDay.getSelectedItem().toString();
 
-                if(modifyMode)
+                switch (mode)
                 {
-                    //if in modify --> check if we can add lesson, then delete previous lesson to add the modified one
-                    if(DataCsvManager.getInstance().isLessonAddable(getContext(), startHour, endHour)) {
-                        DataCsvManager.getInstance().deleteLine(getContext(), dayModify, lessonLineToDelete);
-                        DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day);
-                        this.dismiss();
-                    }
-                    else {
-                        message(getContext().getString(R.string.lesson_format_csv_error));
-                    }
-                }
-                else {
-                    //if not in modify --> just try to add the lesson
-                    if (DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day)) {
-                        this.dismiss();
-                    } else {
-                        message(getContext().getString(R.string.lesson_format_csv_error));
-                    }
+                    case ADD:
+                        //if not in modify --> just try to add the lesson
+                        if (DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day)) {
+                            this.dismiss();
+                        } else {
+                            message(getContext().getString(R.string.lesson_format_csv_error));
+                        }
+                        break;
+                    case MODIFY:
+                        //if in modify --> check if we can add lesson, then delete previous lesson to add the modified one
+                        if(DataCsvManager.getInstance().isLessonAddable(getContext(), startHour, endHour)) {
+                            DataCsvManager.getInstance().deleteLine(getContext(), dayModify, lessonLineToDelete);
+                            DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day);
+                            this.dismiss();
+                        }
+                        else {
+                            message(getContext().getString(R.string.lesson_format_csv_error));
+                        }
+                        break;
+                    case DUPLICATE:
+                        //if not in modify --> just try to add the lesson
+                        if (DataCsvManager.getInstance().addLesson(getContext(), startHour, endHour, lesson, room, city, day)) {
+                            this.dismiss();
+                        } else {
+                            message(getContext().getString(R.string.lesson_format_csv_error));
+                        }
+                        break;
                 }
                 break;
             case R.id.buttonCancel:

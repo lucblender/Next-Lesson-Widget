@@ -78,7 +78,6 @@ public class EditorFragment extends Fragment implements View.OnClickListener, Ob
         }
     }
 
-
     @Override
     public void update(Observable o, Object arg) {
         createLessonLineFromCSV();

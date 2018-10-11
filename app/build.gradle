@@ -19,7 +19,7 @@ android {
     }
     defaultConfig {
         applicationId "com.lucblender.lucasbonvin.widgettest"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
         versionName "alpha 1.2"

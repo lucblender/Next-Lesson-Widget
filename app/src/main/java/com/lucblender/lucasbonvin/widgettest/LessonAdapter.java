@@ -3,10 +3,13 @@ package com.lucblender.lucasbonvin.widgettest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
@@ -128,7 +131,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     }
 
 
-    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnClickListener{
+    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnCreateContextMenuListener {
         private final String TAG = LessonViewHolder.class.getName();
 
         //create all textview and will link them to R
@@ -262,13 +265,14 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             layoutSAT.setOnLongClickListener(this);
             layoutSUN.setOnLongClickListener(this);
 
-            layoutMON.setOnClickListener(this);
-            layoutTUE.setOnClickListener(this);
-            layoutWED.setOnClickListener(this);
-            layoutTHU.setOnClickListener(this);
-            layoutFRI.setOnClickListener(this);
-            layoutSAT.setOnClickListener(this);
-            layoutSUN.setOnClickListener(this);
+
+            layoutMON.setOnCreateContextMenuListener(this);
+            layoutTUE.setOnCreateContextMenuListener(this);
+            layoutWED.setOnCreateContextMenuListener(this);
+            layoutTHU.setOnCreateContextMenuListener(this);
+            layoutFRI.setOnCreateContextMenuListener(this);
+            layoutSAT.setOnCreateContextMenuListener(this);
+            layoutSUN.setOnCreateContextMenuListener(this);
 
             idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, "Mon");
             idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, "Tue");
@@ -312,13 +316,48 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
         }
 
+
         @Override
         public boolean onLongClick(View v) {
 
+            if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
+                //creating a popup menu
+                PopupMenu popup = new PopupMenu(v.getContext(), v);
+                //inflating menu from xml resource
+                popup.inflate(R.menu.context_menu_lesson);
+                //adding click listener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.contextDelete:
+                                return deleteItem(v);
+                            case R.id.contextDuplicate:
+                                return duplicateItem(v);
+                            case R.id.contextModify:
+                                return modifyItem(v);
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                //displaying the popup
+                popup.show();
+            }
+            return true;
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Select The Action");
+            menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
+            menu.add(0, v.getId(), 0, "SMS");
+        }
+
+        public boolean deleteItem(View v) {
             final int position = this.getLayoutPosition();
             final View view = v;
-            switch (v.getId())
-            {
+            switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
@@ -327,15 +366,14 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
-                    if(!idToTimeTextView.get(v.getId()).getText().toString().equals(" - "))
-                    {
+                    if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         //setup a popup to prevent miss-click
                         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                         builder.setTitle(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete));
-                        builder.setMessage(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message)+idToLessonTextView.get(view.getId()).getText()+"\" ?");
+                        builder.setMessage(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message) + idToLessonTextView.get(view.getId()).getText() + "\" ?");
                         builder.setPositiveButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.yes), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                DataCsvManager.getInstance().deleteLine(view.getContext(),idToDay.get(view.getId()), position);
+                                DataCsvManager.getInstance().deleteLine(view.getContext(), idToDay.get(view.getId()), position);
                             }
                         });
                         builder.setNegativeButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.cancel), new DialogInterface.OnClickListener() {
@@ -349,13 +387,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             return false;
         }
 
-        @Override
-        public void onClick(View v) {
-
+        public boolean modifyItem(View v) {
             final int position = this.getLayoutPosition();
             final View view = v;
-            switch (v.getId())
-            {
+            switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
@@ -364,10 +399,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
-                    if(!idToTimeTextView.get(v.getId()).getText().toString().equals(" - "))
-                    {
+                    if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         String lesson = idToLessonTextView.get(v.getId()).getText().toString();
-                        String hour = idToTimeTextView.get(v.getId()).getText().toString().replace(" ","");
+                        String hour = idToTimeTextView.get(v.getId()).getText().toString().replace(" ", "");
                         String startHour = hour.split("-")[0];
                         String endHour = hour.split("-")[1];
                         String city = idToCityTextView.get(v.getId()).getText().toString();
@@ -379,7 +413,38 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
                     }
             }
+            return true;
+        }
 
+
+        public boolean duplicateItem(View v) {
+            final int position = this.getLayoutPosition();
+            final View view = v;
+            switch (v.getId()) {
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
+                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
+                    //when clicked on a layout, will check if the hours is not '-' --> mean lesson
+                    if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
+                        String lesson = idToLessonTextView.get(v.getId()).getText().toString();
+                        String hour = idToTimeTextView.get(v.getId()).getText().toString().replace(" ", "");
+                        String startHour = hour.split("-")[0];
+                        String endHour = hour.split("-")[1];
+                        String city = idToCityTextView.get(v.getId()).getText().toString();
+                        String room = idToRoomTextView.get(v.getId()).getText().toString();
+                        String day = idToDay.get(v.getId());
+                        AddLessonDialog addLessonDialog = new AddLessonDialog(v.getContext());
+                        addLessonDialog.initEditText(day, lesson, startHour, endHour, city, room);
+                        addLessonDialog.show();
+
+                    }
+            }
+            return true;
         }
     }
+
 }

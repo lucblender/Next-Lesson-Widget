@@ -41,7 +41,7 @@ public class DataCsvManager extends Observable{
         staticDays.put("Sun", 6);
     }
 
-    class FileUriExtension
+    public class FileUriExtension
     {
         public String URI;
         public String Extension;

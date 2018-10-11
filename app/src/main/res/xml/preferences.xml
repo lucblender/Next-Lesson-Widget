@@ -8,9 +8,14 @@
         />
     <Preference
         android:title="@string/open_file"
-        android:summary=""
+        android:summary="Open the csv planning file with dedicated app"
         android:key="fileOpen"
         />
+    <Preference
+    android:title="@string/send_file"
+    android:summary="Send your planning file to someone else"
+    android:key="sendFile"
+    />
     <ListPreference
         android:key="param_language"
         android:title="@string/change_language"

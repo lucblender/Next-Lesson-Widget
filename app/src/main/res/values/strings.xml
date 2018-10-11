@@ -73,5 +73,7 @@
         <item>fr</item>
     </string-array>
     <string name="version" translatable="false">alpha 1.2</string>
+    <string name="send_file">Send file</string>
+    <string name="duplicate_lesson">Duplicate Lesson</string>
 
 </resources>

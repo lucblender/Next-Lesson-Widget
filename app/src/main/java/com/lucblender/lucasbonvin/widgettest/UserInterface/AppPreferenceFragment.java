@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
 import com.lucblender.lucasbonvin.widgettest.R;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 
@@ -127,6 +128,40 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
                         getContext().getPackageName()+".com.lucblender.lucasbonvin",
                         toto));
                 startActivity(myIntent);
+                return true;
+            }
+        });
+
+        //set the onclick listener to send csvfile
+        Preference sendFile = (Preference) findPreference("sendFile");
+        sendFile.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+
+                String myFilePath = DataCsvManager.getInstance().getCsvFile(getContext()).URI;
+                Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+                File fileWithinMyDir = new File(myFilePath);
+
+                if(fileWithinMyDir.exists()) {
+
+                    File toto = new File(myFilePath);
+
+                    intentShareFile.setType("text/*");
+                    intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    intentShareFile.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(getContext(),
+                            getContext().getPackageName()+".com.lucblender.lucasbonvin",
+                            toto));
+                    intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
+                            "Sharing Planning File from Lesson Planning Widget app");
+                    intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sent from Lesson Planning Widget app on android");
+
+                    startActivity(Intent.createChooser(intentShareFile, "Share File"));
+                }
+                else
+                {
+                    message("File does not exist");
+                }
+
                 return true;
             }
         });
