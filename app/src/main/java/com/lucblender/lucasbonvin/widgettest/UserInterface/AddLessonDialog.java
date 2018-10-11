@@ -107,15 +107,31 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
             }
         });
 
+
+
+
         editTextEndHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String timeEnd[] = editTextStartHour.getText().toString().split(":");
+
+                int hourEnd = 8;
+                int minEnd = 0;
+
+                if(timeEnd.length == 2)
+                {
+                    hourEnd = Integer.valueOf(timeEnd[0])+1;
+                    minEnd = Integer.valueOf(timeEnd[1]);
+                    if(hourEnd > 24)
+                        hourEnd = 24;
+                }
+
                 TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),R.style.Theme_AppCompat, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         editTextEndHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
                     }
-                }, 8, 0, true);//24 hour time
+                }, hourEnd, minEnd, true);//24 hour time
                 mTimePicker.setTitle(getContext().getString(R.string.select_end_time));
                 mTimePicker.show();
             }
