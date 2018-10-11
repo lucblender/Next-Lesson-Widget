@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lesson Planning Widget</string>
+    <string name="app_name">Next Lesson Widget</string>
     <string name="resTitle">Next lesson widget crash</string>
     <string name="resText">Voulez-vous envoyer un rapport de crash au développeur?</string>
     <string name="lucas_bonvin"><u>Lucas Bonvin</u></string>
@@ -46,22 +46,16 @@
     <string name="help">Aide</string>
     <string name="change_language">Changer la langue</string>
     <string name="about">About</string>
-    <string name="help_text">
-        "Votre csv doit être formatté de la manière suivante:
-        \t • chaque ligne décrit une leçon
-        \t• toutes les leçons -> ordre chronologique
-        \t• le format d'une ligne:
-        DDD,lessonName,Room,hh:mm start,hh:mm end,Location
-        \t• leçon ex:
-        Wed,Sin,A205,8:45,11:10,Sion
-        User interface principale:
-        \t• Widget, prochaine leçon
-        User interface secondaire:
-        \t• Swipe right, full planner
-        \t\t• Planning modifiable
-        \t\t• Simple clique pour modifier
-        \t\t• Long clique pour supprimer
-        \t\t• Bouton plus pour ajouter"</string>
+    <string name="help_text_1">User Interface Widget:</string>
+    <string name="help_text_2">• Widget, prochaine leçon</string>
+    <string name="help_text_3">User interface du planning:</string>
+    <string name="help_text_4">• Glisser l\'écran à droite</string>
+    <string name="help_text_5">• Planner editable</string>
+    <string name="help_text_6">• Bouton plus pour ajouter</string>
+    <string name="help_text_7">• Clique long pour:</string>
+    <string name="help_text_8">• Supprimer une leçon</string>
+    <string name="help_text_9">• Modifier une leçon</string>
+    <string name="help_text_10">• Dupliquer une leçon</string>
 
     <string-array name="list_lang_entries">
         <item>English</item>
@@ -72,4 +66,10 @@
         <item>en</item>
         <item>fr</item>
     </string-array>
+    <string name="send_file">Envoyer le planning</string>
+    <string name="duplicate_lesson">Dupliquer la lesson</string>
+    <string name="duplicate">Dupliquer</string>
+    <string name="modify">Modifier</string>
+    <string name="open_csv">Ouvrir votre planning csv avec une application dédiée</string>
+    <string name="send_planning">Envoyer le fichier de votre planning</string>
 </resources>
