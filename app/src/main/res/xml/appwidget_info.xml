@@ -3,5 +3,5 @@
     android:initialLayout="@layout/widget"
     android:minHeight="72dp"
     android:minWidth="72dp"
-    android:previewImage="@mipmap/ic_launcher"
+    android:previewImage="@mipmap/ic_widget_preview"
     android:updatePeriodMillis="0"/>

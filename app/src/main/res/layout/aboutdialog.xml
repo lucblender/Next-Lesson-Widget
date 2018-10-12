@@ -7,19 +7,34 @@
     android:paddingRight="10dp"
     android:paddingLeft="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
-        android:text="@string/about"
-        android:textSize="20dp"
-        android:layout_weight="1"
-        android:paddingBottom="5dp"/>
+        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher_legacy_only"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Lesson Widget"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textColor="@color/colorTextSecondary"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -28,18 +43,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/made_by"
-            android:layout_weight="1"/>
+            android:text="Version:"
+            android:layout_weight="1"
+            android:textColor="@color/colorTextSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lucas_bonvin"
-            android:id="@+id/textViewLucasBonvin"
-            android:textColor="#3a3aae"
-            android:layout_weight="1"/>
+            android:id="@+id/about_version"
+            android:layout_weight="1"
+            android:textColor="@color/colorTextSecondary"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/free_use_modify"
+        android:layout_weight="1"
+        android:textColor="@color/colorTextSecondary"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -49,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/code_github"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/colorTextSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
@@ -57,10 +79,10 @@
             android:text="@string/lucblender"
             android:id="@+id/textViewLucblender"
             android:layout_weight="1"
-            android:textColor="#3a3aae"
+            android:textColor="@color/colorLink"
             />
-
     </LinearLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -68,21 +90,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version:"
-            android:layout_weight="1"/>
+            android:text="@string/made_by"
+            android:layout_weight="1"
+            android:textColor="@color/colorTextSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/version"
+            android:text="@string/lucas_bonvin"
+            android:id="@+id/textViewLucasBonvin"
+            android:textColor="@color/colorLink"
             android:layout_weight="1"/>
 
     </LinearLayout>
-    <TextView
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/free_use_modify"
-        android:layout_weight="1"/>
+        android:src="@mipmap/ic_lb_logo"/>
+
 
 
 </LinearLayout>

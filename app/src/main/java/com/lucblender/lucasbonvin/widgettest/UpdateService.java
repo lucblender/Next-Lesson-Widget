@@ -1,12 +1,13 @@
 package com.lucblender.lucasbonvin.widgettest;
 
 import android.app.PendingIntent;
-import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.JobIntentService;
 import android.widget.RemoteViews;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UpdateService extends Service {
+public class UpdateService extends JobIntentService {
 
     private static final String TAG = UpdateService.class.getName();
 
@@ -38,6 +39,11 @@ public class UpdateService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    protected void onHandleWork(@NonNull Intent intent) {
+
     }
 
     @Override

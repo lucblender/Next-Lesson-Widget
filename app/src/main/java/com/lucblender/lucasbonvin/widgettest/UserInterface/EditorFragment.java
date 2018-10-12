@@ -85,6 +85,12 @@ public class EditorFragment extends Fragment implements View.OnClickListener, Ob
     public void update(Observable o, Object arg) {
         createLessonLineFromCSV();
         lessonAdapter.notifyDataSetChanged();
-        getContext().startService(new Intent(getContext(), UpdateService.class));
+        try {
+            getActivity().startService(new Intent(getActivity(), UpdateService.class));
+        }
+            catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
 import com.lucblender.lucasbonvin.widgettest.R;
+import com.lucblender.lucasbonvin.widgettest.UpdateService;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 
 import java.io.File;
@@ -89,6 +90,19 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            getContext().startService(new Intent(getContext(), UpdateService.class));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //set the onclick listener to choose csvfile
         Preference filePicker = (Preference) findPreference("filePicker");
@@ -117,16 +131,22 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
         fileOpener.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                //create an intent to open a file
-                Intent myIntent = new Intent(Intent.ACTION_VIEW);
-                //get the path of file stored in the preference and launch the intent
-                SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
-                File toto = new File(preferences.getString("filePicker","NA"));
-                myIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                myIntent.setData(FileProvider.getUriForFile(getContext(),
-                        getContext().getPackageName()+".com.lucblender.lucasbonvin",
-                        toto));
-                startActivity(myIntent);
+                try {
+                    //create an intent to open a file
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW);
+                    //get the path of file stored in the preference and launch the intent
+                    SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
+                    File toto = new File(preferences.getString("filePicker", "NA"));
+                    myIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    myIntent.setData(FileProvider.getUriForFile(getContext(),
+                            getContext().getPackageName() + ".com.lucblender.lucasbonvin",
+                            toto));
+                    startActivity(myIntent);
+                }
+                catch (Exception e)
+                {
+                    message("No application found to open csv file");
+                }
                 return true;
             }
         });
@@ -152,7 +172,6 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
                             toto));
                     intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
                             "Sharing Planning File from Lesson Planning Widget app");
-                    intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sent from Lesson Planning Widget app on android");
 
                     startActivity(Intent.createChooser(intentShareFile, "Share File"));
                 }
@@ -200,6 +219,7 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
         SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
         Preference pref = findPreference("filePicker");
         pref.setSummary(preferences.getString("filePicker","NA"));
+
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }

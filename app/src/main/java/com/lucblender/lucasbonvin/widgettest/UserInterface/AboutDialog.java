@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.lucblender.lucasbonvin.widgettest.BuildConfig;
 import com.lucblender.lucasbonvin.widgettest.R;
 
 public class AboutDialog extends Dialog {
@@ -16,6 +17,7 @@ public class AboutDialog extends Dialog {
 
     private TextView textViewLucasBonvin;
     private TextView textViewLucblender;
+    private TextView textViewVersion;
 
     public AboutDialog(Activity activity) {
         super(activity);
@@ -29,6 +31,8 @@ public class AboutDialog extends Dialog {
 
         textViewLucasBonvin = findViewById(R.id.textViewLucasBonvin);
         textViewLucblender = findViewById(R.id.textViewLucblender);
+        textViewVersion = findViewById(R.id.about_version);
+        textViewVersion.setText(BuildConfig.VERSION_NAME);
 
         textViewLucasBonvin.setOnClickListener(new View.OnClickListener() {
             @Override

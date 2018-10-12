@@ -431,7 +431,6 @@ public class DataCsvManager extends Observable{
             }
             catch (Exception e)
             {
-                e.printStackTrace();
                 prefFile.URI = "NA";
             }
 

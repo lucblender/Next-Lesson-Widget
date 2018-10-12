@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Next Lesson Widget</string>
+
     <string name="resTitle">Next lesson widget crash</string>
     <string name="resText">Would you like to send a bug report to the developper?</string>
     <string name="resChannelName" translatable="false">resChannelName</string>
@@ -66,7 +67,6 @@
         <item>en</item>
         <item>fr</item>
     </string-array>
-    <string name="version" translatable="false">alpha 1.2</string>
     <string name="send_file">Send planning</string>
     <string name="duplicate_lesson">Duplicate Lesson</string>
     <string name="duplicate">Duplicate</string>

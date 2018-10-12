@@ -50,6 +50,11 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
 
         setContentView(R.layout.screenslider);
 
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher_legacy_only);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -117,7 +122,13 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
             editor.putString("filePicker", filePath);
             editor.apply();
             //call the service that update the widget from the selected file
-            startService(new Intent(this, UpdateService.class));
+            try{
+                startService(new Intent(this, UpdateService.class));
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             // Do anything with file
         }
     }

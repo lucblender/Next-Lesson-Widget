@@ -183,7 +183,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         private final Map<Integer, TextView> idToLessonTextView = new HashMap<>();
         private final Map<Integer, TextView> idToRoomTextView = new HashMap<>();
         private final Map<Integer, TextView> idToCityTextView = new HashMap<>();
-        private final Map<Integer, TextView> idToDayTextView = new HashMap<>();
 
         public LessonViewHolder(View itemView) {
 

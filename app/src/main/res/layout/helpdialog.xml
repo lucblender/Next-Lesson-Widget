@@ -7,72 +7,105 @@
     android:paddingRight="10dp"
     android:paddingLeft="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
-        android:text="@string/help"
-        android:textSize="20dp"
-        android:layout_weight="1"
-        android:paddingBottom="5dp"/>
+        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher_legacy_only"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_1"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_2"
         android:layout_weight="1"
-        android:paddingStart="15dp"/>
+        android:paddingStart="25dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_3"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_4"
         android:layout_weight="1"
-        android:paddingStart="15dp"/>
+        android:paddingStart="25dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_5"
         android:layout_weight="1"
-        android:paddingStart="15dp"/>
+        android:paddingStart="25dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_6"
         android:layout_weight="1"
-        android:paddingStart="30dp"/>
+        android:paddingStart="50dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_7"
         android:layout_weight="1"
-        android:paddingStart="30dp"/>
+        android:paddingStart="50dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_8"
         android:layout_weight="1"
-        android:paddingStart="45dp"/>
+        android:paddingStart="75dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_9"
         android:layout_weight="1"
-        android:paddingStart="45dp"/>
+        android:paddingStart="75dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_10"
         android:layout_weight="1"
-        android:paddingStart="45dp"/>
+        android:paddingStart="75dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/colorTextSecondary"/>
 
 
 </LinearLayout>

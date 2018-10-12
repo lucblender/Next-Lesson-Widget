@@ -6,4 +6,5 @@
     <color name="colorTextMain">#ffffff</color>
     <color name="colorTextPrimary">#c6c6c6</color>
     <color name="colorTextSecondary">#c6c6c6</color>
+    <color name="colorLink">#3a3aae</color>
 </resources>

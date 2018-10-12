@@ -62,7 +62,13 @@ public class WidgetLesson extends AppWidgetProvider {
         //manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
         manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),1*60*1000, pendingIntent);
         //manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-        context.startService(new Intent(context, UpdateService.class));
+        try {
+            context.startService(new Intent(context, UpdateService.class));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
