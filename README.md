@@ -1,5 +1,5 @@
 # Next Lesson Widget
-![Next Lesson Widget Logo]([https://lh3.googleusercontent.com/9fIROE-ZQVYbLpAa12E1jWh_v11MeQN8gmwb9QI2UT2vDZI9M8joZwZ_zPivHH3rew=s180)
+![Next Lesson Widget Logo](https://lh3.googleusercontent.com/9fIROE-ZQVYbLpAa12E1jWh_v11MeQN8gmwb9QI2UT2vDZI9M8joZwZ_zPivHH3rew=s180)
 
 Simple android widget that tell the next lesson the user will follow based on a csv file containing his school program.
 
