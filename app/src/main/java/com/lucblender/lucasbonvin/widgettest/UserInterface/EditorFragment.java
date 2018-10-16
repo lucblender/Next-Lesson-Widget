@@ -1,6 +1,5 @@
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,8 +21,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class EditorFragment extends Fragment implements View.OnClickListener, Observer{
-
-    private Activity activity;
 
     private static final String TAG = EditorFragment.class.getName();
 
@@ -55,6 +52,13 @@ public class EditorFragment extends Fragment implements View.OnClickListener, Ob
         DataCsvManager.getInstance().addObserver(this);
 
         return rootView;
+    }
+
+    @Override
+    public void onDetach() {
+
+        DataCsvManager.getInstance().deleteObserver(this);
+        super.onDetach();
     }
 
     @Override

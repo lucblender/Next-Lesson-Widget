@@ -367,7 +367,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         //setup a popup to prevent miss-click
-                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.MyDialogTheme);
                         builder.setTitle(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete));
                         builder.setMessage(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message) + idToLessonTextView.get(view.getId()).getText() + "\" ?");
                         builder.setPositiveButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.yes), new DialogInterface.OnClickListener() {
@@ -388,7 +388,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
         public boolean modifyItem(View v) {
             final int position = this.getLayoutPosition();
-            final View view = v;
             switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
@@ -417,8 +416,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
 
         public boolean duplicateItem(View v) {
-            final int position = this.getLayoutPosition();
-            final View view = v;
             switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:

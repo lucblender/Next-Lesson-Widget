@@ -13,7 +13,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutMON">
+        android:id="@+id/layoutMON"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
 
         <TextView
             android:layout_width="fill_parent"
@@ -73,7 +75,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutTUE">
+        android:id="@+id/layoutTUE"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -132,7 +136,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutWED">
+        android:id="@+id/layoutWED"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -191,7 +197,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutTHU">
+        android:id="@+id/layoutTHU"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
 
 
         <TextView
@@ -252,7 +260,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutFRI">
+        android:id="@+id/layoutFRI"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
 
         <TextView
             android:layout_width="fill_parent"
@@ -312,7 +322,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutSAT">
+        android:id="@+id/layoutSAT"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
 
         <TextView
             android:layout_width="fill_parent"
@@ -372,7 +384,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/custom_border_no_highlight"
         android:layout_weight="1"
-        android:id="@+id/layoutSUN">
+        android:id="@+id/layoutSUN"
+        android:backgroundTint="@color/transparent"
+        android:backgroundTintMode="src_atop">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

@@ -65,6 +65,7 @@
         android:id="@+id/room"
         android:textColor="#ffffffff"
         android:textSize="10dp"
-        android:text="-"
-        android:gravity="center" />
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="-" />
 </LinearLayout>

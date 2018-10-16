@@ -2,8 +2,7 @@
     <string name="app_name">Next Lesson Widget</string>
 
     <string name="resTitle">Next lesson widget crash</string>
-    <string name="resText">Would you like to send a bug report to the developper?</string>
-    <string name="resChannelName" translatable="false">resChannelName</string>
+    <string name="resText">Would you like to send a bug report to the developer?</string>
     <string name="lucas_bonvin"><u>Lucas Bonvin</u></string>
     <string name="lucblender"><u>lucblender</u></string>
     <string name="lesson_format_csv_error">Lesson Format or csv file is not correct</string>

@@ -1,6 +1,5 @@
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -42,6 +41,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private String room;
     private int lessonLineToDelete;
 
+
     enum modifyMode {
         MODIFY,
         ADD,
@@ -50,11 +50,6 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
     private modifyMode mode;
 
-
-    public AddLessonDialog(Activity activity) {
-        super(activity);
-        mode = modifyMode.ADD;
-    }
 
     public AddLessonDialog(Context context) {
         super(context);
@@ -83,7 +78,6 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         this.city = city;
         this.room = room;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +118,6 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                 mTimePicker.show();
             }
         });
-
-
-
 
         editTextEndHour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,6 +182,8 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     {
         Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
     }
+
+
 
     @Override
     public void onClick(View v) {

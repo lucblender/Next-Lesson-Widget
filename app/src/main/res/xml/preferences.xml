@@ -33,6 +33,4 @@
         android:summary=""
         android:key="about"
         />
-    <Preference
-        android:layout="@layout/custom_preference"/>
 </PreferenceScreen>

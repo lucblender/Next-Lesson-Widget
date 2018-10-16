@@ -29,7 +29,7 @@ public class DataCsvManager extends Observable{
 
     private static DataCsvManager instance;
 
-    public static final Map<String, Integer> staticDays = new HashMap<>();
+    private static final Map<String, Integer> staticDays = new HashMap<>();
 
     static {
         staticDays.put("Mon", 0);
@@ -162,9 +162,6 @@ public class DataCsvManager extends Observable{
                             //test if the lesson is before or after the actual time
                             // if before --> mean we found the next lesson
                             if (newLessonCalendar.before(lessonHours)) {
-
-                                SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
-                                lineToAppend = lineToAppend;
                                 found = true;
                                 break;
                             }
@@ -189,8 +186,8 @@ public class DataCsvManager extends Observable{
                 CSVWriter totoW = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
                 totoW.writeAll(lines);
                 totoW.close();
-            }catch (Exception e)
-            {
+            }
+            catch (Exception e){
                 e.printStackTrace();
             }
 

@@ -58,7 +58,6 @@ public class Lesson {
 
         if(isDayToday())
         {
-            Date date = new Date();
             Calendar calendar = Calendar.getInstance();
 
             int hours = calendar.get(Calendar.HOUR_OF_DAY);

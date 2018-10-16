@@ -1,6 +1,5 @@
 package com.lucblender.lucasbonvin.widgettest;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -20,8 +19,6 @@ import java.util.Map;
 public class UpdateService extends JobIntentService {
 
     private static final String TAG = UpdateService.class.getName();
-
-    private PendingIntent pendingIntent = null;
 
     public static final Map<String, String> staticDays = new HashMap<>();
 
@@ -51,7 +48,7 @@ public class UpdateService extends JobIntentService {
 
         //get the view of the widget
         RemoteViews view = new RemoteViews(getPackageName(), com.lucblender.lucasbonvin.widgettest.R.layout.widget);
-        String [] lessonData = DataCsvManager.getInstance().nextLessonFromCsv(this);
+        String [] lessonData = DataCsvManager.getInstance().nextLessonFromCsv( this);
 
         if(lessonData!=null)
         {

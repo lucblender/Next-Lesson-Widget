@@ -21,8 +21,8 @@ android {
         applicationId "com.lucblender.lucasbonvin.widgettest"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 4
-        versionName "beta 1.0"
+        versionCode 5
+        versionName "Release 1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.opencsv:opencsv:4.1'
-    implementation 'com.android.support:preference-v7:27.1.1'
+    implementation 'com.android.support:preference-v14:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation "ch.acra:acra-mail:$acraVersion"
     implementation "ch.acra:acra-dialog:$acraVersion"

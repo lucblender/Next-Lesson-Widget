@@ -14,6 +14,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        Log.e(TAG, "onCreatePreferences: " );
         //Set the preference from xml
         setPreferencesFromResource(R.xml.preferences, rootKey);
 

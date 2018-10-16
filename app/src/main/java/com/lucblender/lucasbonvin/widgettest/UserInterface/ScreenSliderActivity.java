@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -49,6 +50,10 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
                 res.updateConfiguration(conf, dm);
 
         setContentView(R.layout.screenslider);
+
+        ViewPager mImageViewPager = (ViewPager) findViewById(R.id.pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(mImageViewPager, true);
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);

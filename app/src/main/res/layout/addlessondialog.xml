@@ -6,7 +6,8 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:background="@color/colorPrimary">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,11 +24,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/lesson_name"/>
+            android:text="@string/lesson_name"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/editTextLessonName"
             android:layout_width="150dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:singleLine="true"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 
@@ -41,12 +48,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/day"
-            />
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
 
         <Spinner
             android:id="@+id/spinnerDay"
             android:layout_width="150dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:popupBackground="@color/colorPrimaryDark"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -59,13 +71,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/start_hour"
-            />
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/editTextStartHour"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:focusable="false"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,13 +94,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/end_hour"
-            />
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/editTextEndHour"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:focusable="false"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -97,12 +117,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/city"
-            />
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/editTextCity"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -115,12 +139,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/room"
-            />
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
         <EditText
             android:id="@+id/editTextRoom"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="15sp"/>
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"

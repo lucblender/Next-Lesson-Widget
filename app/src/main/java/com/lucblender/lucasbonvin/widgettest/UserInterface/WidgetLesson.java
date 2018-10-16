@@ -59,9 +59,7 @@ public class WidgetLesson extends AppWidgetProvider {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MINUTE,1);
-        //manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
-        manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),1*60*1000, pendingIntent);
-        //manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),5*60*1000, pendingIntent);
         try {
             context.startService(new Intent(context, UpdateService.class));
         }
