@@ -42,6 +42,14 @@ public class AboutDialog extends Dialog {
             }
         });
 
+        findViewById(R.id.lb_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.lucas-bonvin.com"));
+                getContext().startActivity(browserIntent);
+            }
+        });
+
         textViewLucblender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

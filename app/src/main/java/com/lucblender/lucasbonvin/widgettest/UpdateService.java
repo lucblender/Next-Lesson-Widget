@@ -1,12 +1,13 @@
 package com.lucblender.lucasbonvin.widgettest;
 
+import android.app.job.JobInfo;
+import android.app.job.JobParameters;
+import android.app.job.JobScheduler;
+import android.app.job.JobService;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.JobIntentService;
 import android.widget.RemoteViews;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UpdateService extends JobIntentService {
+public class UpdateService extends JobService {
 
     private static final String TAG = UpdateService.class.getName();
 
@@ -32,20 +33,33 @@ public class UpdateService extends JobIntentService {
         staticDays.put("Sun", "Sunday");
     }
 
-    @Nullable
+
+
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public boolean onStopJob(JobParameters params) {
+        return false;
     }
 
     @Override
-    protected void onHandleWork(@NonNull Intent intent) {
+    public boolean onStartJob(JobParameters params) {
 
+        updateWidget();
+        scheduleRefresh();
+        jobFinished(params,false);
+
+        return true;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        updateWidget();
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    private void updateWidget()
+    {
         //get the view of the widget
         RemoteViews view = new RemoteViews(getPackageName(), com.lucblender.lucasbonvin.widgettest.R.layout.widget);
         String [] lessonData = DataCsvManager.getInstance().nextLessonFromCsv( this);
@@ -70,8 +84,6 @@ public class UpdateService extends JobIntentService {
         ComponentName theWidget = new ComponentName(this, WidgetLesson.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         appWidgetManager.updateAppWidget(theWidget, view);
-
-        return super.onStartCommand(intent, flags, startId);
     }
 
     private void setWarningText(RemoteViews view)
@@ -84,5 +96,19 @@ public class UpdateService extends JobIntentService {
         view.setTextViewText(com.lucblender.lucasbonvin.widgettest.R.id.room,getString(com.lucblender.lucasbonvin.widgettest.R.string.change_file));
         view.setTextViewText(com.lucblender.lucasbonvin.widgettest.R.id.nextLessonWidget, getString(com.lucblender.lucasbonvin.widgettest.R.string.next_lesson));
     }
+
+    private void scheduleRefresh() {
+
+        JobInfo jobInfo = new JobInfo.Builder(10,
+                new ComponentName(getApplicationContext(), UpdateService.class))
+                .setRequiresCharging(false)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE)
+                .setPersisted(true)
+                .setMinimumLatency(1*60*1000).build();
+
+        JobScheduler jobScheduler = (JobScheduler)getApplicationContext().getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
+    }
+
 
 }

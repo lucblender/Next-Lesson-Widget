@@ -2,23 +2,25 @@ package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.widget.RemoteViews;
 
 import com.lucblender.lucasbonvin.widgettest.R;
 import com.lucblender.lucasbonvin.widgettest.UpdateService;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class WidgetLesson extends AppWidgetProvider {
 
+    private static final String TAG = UpdateService.class.getName();
+
     private PendingIntent pendingIntent = null;
+
+    public static final String WIDGET_IDS_KEY ="mywidgetproviderwidgetids";
 
 
     @Override
@@ -28,6 +30,7 @@ public class WidgetLesson extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+
 
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
@@ -55,11 +58,17 @@ public class WidgetLesson extends AppWidgetProvider {
         if (pendingIntent == null) {
             pendingIntent = PendingIntent.getService(context, 125, i, PendingIntent.FLAG_CANCEL_CURRENT);
         }
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.MINUTE,1);
-        manager.setRepeating(AlarmManager.RTC_WAKEUP,SystemClock.elapsedRealtime(),5*60*1000, pendingIntent);
+
+        JobInfo jobInfo = new JobInfo.Builder(10,
+                new ComponentName(context, UpdateService.class))
+                .setRequiresCharging(false)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE)
+                .setPersisted(true)
+                .setMinimumLatency(1*60*1000).build();
+
+        JobScheduler jobScheduler = (JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
+
         try {
             context.startService(new Intent(context, UpdateService.class));
         }
@@ -71,6 +80,12 @@ public class WidgetLesson extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         super.onReceive(context, intent);
+
+        if (intent.hasExtra(WIDGET_IDS_KEY)) {
+            int[] ids = intent.getExtras().getIntArray(WIDGET_IDS_KEY);
+            this.onUpdate(context, AppWidgetManager.getInstance(context), ids);
+        }
     }
 }

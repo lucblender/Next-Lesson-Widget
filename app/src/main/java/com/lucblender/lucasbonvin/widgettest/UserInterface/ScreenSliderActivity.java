@@ -1,5 +1,8 @@
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -64,6 +67,8 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
+        updateMyWidgets(getApplicationContext());
     }
 
     @Override
@@ -136,6 +141,16 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
             }
             // Do anything with file
         }
+    }
+
+    public static void updateMyWidgets(Context context) {
+        AppWidgetManager man = AppWidgetManager.getInstance(context);
+        int[] ids = man.getAppWidgetIds(
+                new ComponentName(context,WidgetLesson.class));
+        Intent updateIntent = new Intent();
+        updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        updateIntent.putExtra(WidgetLesson.WIDGET_IDS_KEY, ids);
+        context.sendBroadcast(updateIntent);
     }
 
 }
