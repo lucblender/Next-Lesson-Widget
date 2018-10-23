@@ -50,6 +50,7 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
     public interface PreferenceListener{
         //interface used to transmit to the main activity the parameters update
         public void updateLanguage(String lang);
+        public void updateTheme(String themeKey);
     }
 
     @Override
@@ -68,8 +69,18 @@ public class AppPreferenceFragment extends PreferenceFragmentCompat implements S
             }
         });
 
+        ListPreference themePref = (ListPreference) findPreference("param_theme");
+        themePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String newValueStr = (String) newValue;
+                mListener.updateTheme(newValueStr);
+                return true;
+            }
+        });
 
         SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
+
         preferences.registerOnSharedPreferenceChangeListener(this);
     }
 

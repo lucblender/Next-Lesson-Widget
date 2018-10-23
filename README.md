@@ -12,9 +12,10 @@ Now on the play store: [Download here!](https://play.google.com/store/apps/detai
 - the format of a line is: 
     - lessonName,Room,hh:mm start,hh:mm end,Location
 - lesson eg: 
-    - "Wed,Sin,A205,8:45,11:10,Sion
+    - Wed,"Sin","A205","8:45","11:10","Sion"
         
 ## User interface
+
 
 ### Widget user interface:
 - Widget, next lesson

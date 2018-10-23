@@ -6,7 +6,7 @@
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
     android:paddingLeft="10dp"
-    android:background="@color/colorPrimary">
+    android:background="?colorPrimary">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Next Lesson Widget"
         android:layout_weight="1"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -46,14 +46,14 @@
             android:layout_height="wrap_content"
             android:text="Version:"
             android:layout_weight="1"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="?android:textColorSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/about_version"
             android:layout_weight="1"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="?android:textColorSecondary"/>
 
     </LinearLayout>
     <TextView
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:text="@string/free_use_modify"
         android:layout_weight="1"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:text="@string/code_github"
             android:layout_weight="1"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="?android:textColorSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:text="@string/made_by"
             android:layout_weight="1"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="?android:textColorSecondary"/>
         <TextView
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_lb_logo"
+        android:src="?logo_lb"
         android:id="@+id/lb_logo"/>
 
 

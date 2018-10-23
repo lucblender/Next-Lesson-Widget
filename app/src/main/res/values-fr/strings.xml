@@ -72,4 +72,6 @@
     <string name="modify">Modifier</string>
     <string name="open_csv">Ouvrir votre planning csv avec une application dédiée</string>
     <string name="send_planning">Envoyer le fichier de votre planning</string>
+    <string name="choose_theme">Choisir un thème</string>
+    <string name="warning_no_widget"><![CDATA[Il semble que vous n’ayez pas de widget sur votre écran principal, accédez à votre écran d’accueil et choisissez:  <br> <i>\"Next Lesson Widget\"</i>]]></string>
 </resources>

@@ -66,11 +66,26 @@
         <item>en</item>
         <item>fr</item>
     </string-array>
+
+    <string-array name="list_theme_entries">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>BlueNeon</item>
+    </string-array>
+
+    <string-array name="list_theme_values">
+        <item>dark</item>
+        <item>light</item>
+        <item>blueneon</item>
+    </string-array>
+
     <string name="send_file">Send planning</string>
     <string name="duplicate_lesson">Duplicate Lesson</string>
     <string name="duplicate">Duplicate</string>
     <string name="modify">Modify</string>
     <string name="open_csv">Open the csv planning file with dedicated app</string>
     <string name="send_planning">Send your planning file to someone else</string>
+    <string name="choose_theme">Choose theme</string>
+    <string name="warning_no_widget"><![CDATA[It seems that you have no widget on your main screen, go on your HomeScreen and choose: <br> <i>\"Next Lesson Widget\"</i>]]></string>
 
 </resources>

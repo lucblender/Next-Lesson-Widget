@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="borderHighlight" format="reference" />
+    <attr name="borderNoHighlight" format="reference" />
+    <attr name="logo_lb" format="reference" />
+
+    <attr name="ThemeColorPrimary" />
+    <attr name="ThemeColorPrimaryDark" />
+    <attr name="ThemeColorAccent" />
+    <attr name="ThemeColorTextMain" />
+    <attr name="ThemeColorTextPrimary" />
+    <attr name="ThemeColorTextSecondary" />
+    <attr name="ThemeBorderNoHighlight" />
+    <attr name="ThemeBorderHighlight" />
+    <attr name="ThemeAccentMaterial" />
+</resources>

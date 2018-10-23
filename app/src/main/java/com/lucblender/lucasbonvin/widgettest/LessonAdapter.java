@@ -2,6 +2,8 @@ package com.lucblender.lucasbonvin.widgettest;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -367,7 +369,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         //setup a popup to prevent miss-click
-                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.MyDialogTheme);
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+
+                        String theme = sharedPreferences.getString("param_theme", "dark");
+
+                        int themeId = R.style.MyDialogThemeShared;
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), themeId);
                         builder.setTitle(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete));
                         builder.setMessage(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message) + idToLessonTextView.get(view.getId()).getText() + "\" ?");
                         builder.setPositiveButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.yes), new DialogInterface.OnClickListener() {

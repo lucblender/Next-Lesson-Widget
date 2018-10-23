@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppThemeBlueNeon" parent="@style/AppThemeShared">
+        <item name="ThemeColorPrimary">@color/colorPrimaryBlueNeon</item>
+        <item name="ThemeColorPrimaryDark">@color/colorPrimaryDarkBlueNeon</item>
+        <item name="ThemeColorAccent">@color/colorAccentBlueNeon</item>
+        <item name="ThemeColorTextMain">@color/colorTextMainBlueNeon</item>
+        <item name="ThemeColorTextPrimary">@color/colorTextPrimaryBlueNeon</item>
+        <item name="ThemeColorTextSecondary">@color/colorTextSecondaryBlueNeon</item>
+        <item name="ThemeBorderNoHighlight">@color/borderNoHighlightBlueNeon</item>
+        <item name="ThemeBorderHighlight">@color/borderHighlightBlueNeon</item>
+        <item name="ThemeAccentMaterial">@color/accentMaterialBlueNeon</item>
+
+        <item name="logo_lb">@mipmap/ic_lb_logo</item>
+    </style>
+</resources>

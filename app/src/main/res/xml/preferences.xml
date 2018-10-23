@@ -18,9 +18,17 @@
     <ListPreference
         android:key="param_language"
         android:title="@string/change_language"
-        android:defaultValue="1"
+        android:defaultValue="en"
         android:entries="@array/list_lang_entries"
         android:entryValues="@array/list_lang_values"
+        android:summary="%s"
+        />
+    <ListPreference
+        android:key="param_theme"
+        android:title="@string/choose_theme"
+        android:defaultValue="dark"
+        android:entries="@array/list_theme_entries"
+        android:entryValues="@array/list_theme_values"
         android:summary="%s"
         />
     <Preference

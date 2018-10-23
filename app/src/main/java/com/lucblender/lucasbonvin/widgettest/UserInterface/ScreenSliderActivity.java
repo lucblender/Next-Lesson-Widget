@@ -16,7 +16,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
 
 import com.lucblender.lucasbonvin.widgettest.R;
 import com.lucblender.lucasbonvin.widgettest.UpdateService;
@@ -36,13 +38,22 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
     private PagerAdapter mPagerAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = sharedPreferences.getString("param_theme", "dark");
+
+        if(theme.equals("light"))
+            setTheme(R.style.AppThemeLight);
+        else if(theme.equals("dark"))
+            setTheme(R.style.AppThemeDark);
+        else if(theme.equals("blueneon"))
+            setTheme(R.style.AppThemeBlueNeon);
+
+        super.onCreate(savedInstanceState);
 
         String language = sharedPreferences.getString("param_language", "en");
         Resources res = getResources();
@@ -67,6 +78,16 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+
+        int[] appWidgetIDs = appWidgetManager
+                .getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetLesson.class));
+
+        if(appWidgetIDs.length==0)
+        {
+            messageHTML(getString(R.string.warning_no_widget));
+        }
 
         updateMyWidgets(getApplicationContext());
     }
@@ -108,6 +129,13 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         setLocale(lang);
     }
 
+    @Override
+    public void updateTheme(String themeKey) {
+        Intent refresh = new Intent(this, ScreenSliderActivity.class);
+        startActivity(refresh);
+        finish();
+    }
+
 
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
@@ -139,7 +167,6 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
             {
                 e.printStackTrace();
             }
-            // Do anything with file
         }
     }
 
@@ -153,4 +180,14 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         context.sendBroadcast(updateIntent);
     }
 
+    //show a toast message
+    void message(String s)
+    {
+        Toast.makeText(this,s,Toast.LENGTH_LONG).show();
+    }
+    //show a toast message
+    void messageHTML(String s)
+    {
+        Toast.makeText(this, Html.fromHtml(s), Toast.LENGTH_LONG).show();
+    }
 }

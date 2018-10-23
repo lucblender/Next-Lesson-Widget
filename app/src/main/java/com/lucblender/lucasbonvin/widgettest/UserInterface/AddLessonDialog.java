@@ -3,7 +3,9 @@ package com.lucblender.lucasbonvin.widgettest.UserInterface;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -104,11 +106,19 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         editTextEndHour = (EditText) findViewById(R.id.editTextEndHour);
         editTextRoom = (EditText) findViewById(R.id.editTextRoom);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String theme = sharedPreferences.getString("param_theme", "dark");
+
+
+
+
         //time picker will open when clicked on edit text linked to time
         editTextStartHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),R.style.Theme_AppCompat, new TimePickerDialog.OnTimeSetListener() {
+                int themeId = R.style.MyDialogThemeShared;
+
+                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),themeId, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         editTextStartHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
@@ -122,6 +132,8 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         editTextEndHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int themeId = R.style.MyDialogThemeShared;
+
                 String timeEnd[] = editTextStartHour.getText().toString().split(":");
 
                 int hourEnd = 8;
@@ -135,7 +147,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                         hourEnd = 24;
                 }
 
-                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),R.style.Theme_AppCompat, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),themeId, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         editTextEndHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));

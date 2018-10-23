@@ -6,7 +6,7 @@
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
     android:paddingLeft="10dp"
-    android:background="@color/colorPrimary">
+    android:background="?colorPrimary">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/help_text_1"
         android:layout_weight="1"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,14 +43,14 @@
         android:layout_weight="1"
         android:paddingStart="25dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_3"
         android:layout_weight="1"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         android:layout_weight="1"
         android:paddingStart="25dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
         android:layout_weight="1"
         android:paddingStart="25dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
         android:layout_weight="1"
         android:paddingStart="50dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
         android:layout_weight="1"
         android:paddingStart="50dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         android:layout_weight="1"
         android:paddingStart="75dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         android:layout_weight="1"
         android:paddingStart="75dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
+        android:textColor="?android:textColorSecondary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +106,5 @@
         android:layout_weight="1"
         android:paddingStart="75dp"
         android:paddingTop="3dp"
-        android:textColor="@color/colorTextSecondary"/>
-
-
+        android:textColor="?android:textColorSecondary"/>
 </LinearLayout>

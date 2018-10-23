@@ -1,0 +1,60 @@
+<resources>
+
+    <style name="AppThemeShared" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">?ThemeColorPrimary</item>
+        <item name="colorPrimaryDark">?ThemeColorPrimaryDark</item>
+        <item name="colorAccent">?ThemeColorAccent</item>
+        <item name="android:popupBackground">?ThemeColorPrimaryDark</item>
+        <item name="android:textColor">?ThemeColorTextMain</item>
+        <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
+        <item name="android:textColorSecondary">?ThemeColorTextSecondary</item>
+        <item name="textColorAlertDialogListItem">?ThemeColorTextPrimary</item>
+        <item name="android:colorBackground">?ThemeColorPrimary</item>
+        <item name="borderHighlight">?ThemeBorderHighlight</item>
+        <item name="borderNoHighlight">?ThemeBorderNoHighlight</item>
+
+        <item name="alertDialogTheme">@style/MyDialogThemeShared</item>
+        <item name="actionBarTheme">@style/ActionBarShared</item>
+
+        <item name="actionBarPopupTheme">@style/PopupMenuShared</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="actionBarStyle">@style/WidgetActionBarShared</item>
+    </style>
+
+    <style name="MyDialogThemeShared" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:backgroundTint">?ThemeColorPrimary</item>
+        <item name="android:colorBackground">?ThemeColorPrimary</item>
+        <item name="colorPrimary">?ThemeColorPrimary</item>
+        <item name="android:textColor">?ThemeColorTextPrimary</item>
+        <item name="textColorAlertDialogListItem">?ThemeColorTextPrimary</item>
+        <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
+        <item name="android:textColorSecondary">?ThemeColorTextSecondary</item>
+        <item name="colorAccent">?ThemeAccentMaterial</item>
+
+        <item name="android:headerTimeTextAppearance">@style/TimeLabelShared</item>
+    </style>
+
+    <style name="TimeLabelShared" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">?ThemeColorTextPrimary</item>
+    </style>
+
+    <style name="ActionBarShared" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
+        <item name="android:textColorSecondary">?ThemeColorTextSecondary</item>
+        <item name="actionMenuTextColor">?ThemeColorTextPrimary</item>
+        <item name="colorControlNormal">#262626</item>
+    </style>
+
+
+    <style name="PopupMenuShared" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">?colorAccent</item>
+        <item name="android:textColorPrimary">?android:textColorPrimary</item>
+    </style>
+
+    <style name="WidgetActionBarShared" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="background">?colorAccent</item>
+        <item name="android:textColor">?android:textColor</item>
+        <item name="android:textColorPrimary">?android:textColorPrimary</item>
+        <item name="elevation">4dp</item>
+    </style>
+</resources>

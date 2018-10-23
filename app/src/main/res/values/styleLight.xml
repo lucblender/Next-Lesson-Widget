@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppThemeLight" parent="@style/AppThemeShared">
+        <item name="ThemeColorPrimary">@color/colorPrimaryLight</item>
+        <item name="ThemeColorPrimaryDark">@color/colorPrimaryDarkLight</item>
+        <item name="ThemeColorAccent">@color/colorAccentLight</item>
+        <item name="ThemeColorTextMain">@color/colorTextMainLight</item>
+        <item name="ThemeColorTextPrimary">@color/colorTextPrimaryLight</item>
+        <item name="ThemeColorTextSecondary">@color/colorTextSecondaryLight</item>
+        <item name="ThemeBorderNoHighlight">@color/borderNoHighlightLight</item>
+        <item name="ThemeBorderHighlight">@color/borderHighlightLight</item>
+        <item name="ThemeAccentMaterial">@color/accentMaterialLight</item>
+
+        <item name="logo_lb">@mipmap/ic_lb_logo_black</item>
+    </style>
+</resources>

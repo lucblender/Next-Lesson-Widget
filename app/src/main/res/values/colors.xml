@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-->Dark theme colors</-->
     <color name="colorPrimary">#1a1a1a</color>
     <color name="colorPrimaryDark">#2e2e2e</color>
     <color name="colorAccent">#4d4d4d</color>
     <color name="colorTextMain">#ffffff</color>
     <color name="colorTextPrimary">#c6c6c6</color>
     <color name="colorTextSecondary">#8f8f8f</color>
+    <color name="borderNoHighlight">#616161</color>
+    <color name="borderHighlight">#ffffff</color>
+    <color name="accentMaterial">#d6d6d6</color>
+
+    <!-->Light theme colors</-->
+    <color name="colorPrimaryLight">#f9f9f9</color>
+    <color name="colorPrimaryDarkLight">#cfcfcf</color>
+    <color name="colorAccentLight">#acacac</color>
+    <color name="colorTextMainLight">#000000</color>
+    <color name="colorTextPrimaryLight">#1d1d1d</color>
+    <color name="colorTextSecondaryLight">#393939</color>
+    <color name="borderNoHighlightLight">#000000</color>
+    <color name="borderHighlightLight">#b9b9b9</color>
+    <color name="accentMaterialLight">#1a1a1a</color>
+
+    <!-->BlueNeon theme colors</-->
+    <color name="colorPrimaryBlueNeon">#121219</color>
+    <color name="colorPrimaryDarkBlueNeon">#2e2e37</color>
+    <color name="colorAccentBlueNeon">#4d4d4d</color>
+    <color name="colorTextMainBlueNeon">#ffffff</color>
+    <color name="colorTextPrimaryBlueNeon">#e0e0ff</color>
+    <color name="colorTextSecondaryBlueNeon">#8cb2ea</color>
+    <color name="borderNoHighlightBlueNeon">#9eb1ed</color>
+    <color name="borderHighlightBlueNeon">#d6ddf9</color>
+    <color name="accentMaterialBlueNeon">#9ca3d1</color>
+
+    <!-->Debug theme colors</-->
+    <color name="colorPrimaryDebug">#fffd75</color>
+    <color name="colorPrimaryDarkDebug">#00ff40</color>
+    <color name="colorAccentDebug">#ff0000</color>
+    <color name="colorTextMainDebug">#0aa9d6</color>
+    <color name="colorTextPrimaryDebug">#5eff00</color>
+    <color name="colorTextSecondaryDebug">#ff1abe</color>
+    <color name="borderNoHighlightDebug">#ff00ea</color>
+    <color name="borderHighlightDebug">#00fbff</color>
+    <color name="accentMaterialDebug">#1a37f5</color>
+
+    <!-->Common colors</-->
     <color name="colorLink">#3a3aae</color>
 </resources>
