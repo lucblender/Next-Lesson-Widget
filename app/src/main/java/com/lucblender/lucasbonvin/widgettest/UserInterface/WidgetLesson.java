@@ -1,6 +1,5 @@
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -51,8 +50,6 @@ public class WidgetLesson extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetIds[i], views);
         }
 
-        //create the alarmManager that will update the widget with the help of a service
-        final AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         final Intent i = new Intent(context, UpdateService.class);
 
         if (pendingIntent == null) {

@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="12dp"
         android:text="@string/next_lesson"
         android:gravity="center"
@@ -18,7 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/date"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="8dp"
         android:gravity="center"
         android:text="-"/>
@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/time"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="8dp"
         android:gravity="center"
         android:text="-"/>
@@ -35,7 +35,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lesson"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="12dp"
         android:gravity="center"
         android:singleLine="true"
@@ -49,11 +49,12 @@
         <requestFocus android:focusable="true" android:focusableInTouchMode="true"
             android:duplicateParentState="true" />
     </TextView>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/location"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="10dp"
         android:gravity="center"
         android:singleLine="true"
@@ -63,7 +64,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/room"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorTextWidget"
         android:textSize="10dp"
         android:gravity="center"
         android:singleLine="true"

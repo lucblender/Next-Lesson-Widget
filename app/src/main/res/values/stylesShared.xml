@@ -19,6 +19,7 @@
         <item name="actionBarPopupTheme">@style/PopupMenuShared</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="actionBarStyle">@style/WidgetActionBarShared</item>
+        <item name="logo_lb">@mipmap/ic_lb_logo</item>
     </style>
 
     <style name="MyDialogThemeShared" parent="Theme.AppCompat.Light.Dialog.Alert">

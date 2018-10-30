@@ -46,4 +46,6 @@
 
     <!-->Common colors</-->
     <color name="colorLink">#3a3aae</color>
+    <color name="colorError">#ef5650</color>
+    <color name="colorTextWidget">#ffffff</color>
 </resources>

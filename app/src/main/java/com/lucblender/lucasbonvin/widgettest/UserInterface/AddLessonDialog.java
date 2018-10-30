@@ -3,9 +3,7 @@ package com.lucblender.lucasbonvin.widgettest.UserInterface;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -13,13 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
 import com.lucblender.lucasbonvin.widgettest.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
@@ -32,9 +32,6 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private EditText editTextRoom;
     private Spinner spinnerDay;
 
-    private Button buttonAdd;
-    private Button buttonCancel;
-
     private String dayModify;
     private String lessonName;
     private String startHour;
@@ -42,6 +39,8 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private String city;
     private String room;
     private int lessonLineToDelete;
+
+    private Map<String, String> mapDynLanguageToEnglish;
 
 
     enum modifyMode {
@@ -86,80 +85,110 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.addlessondialog);
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Mon");
-        list.add("Tue");
-        list.add("Wed");
-        list.add("Thu");
-        list.add("Fri");
-        list.add("Sat");
-        list.add("Sun");
 
-        spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
+        spinnerDay = findViewById(R.id.spinnerDay);
+        editTextLessonName = findViewById(R.id.editTextLessonName);
+        editTextCity = findViewById(R.id.editTextCity);
+        editTextStartHour = findViewById(R.id.editTextStartHour);
+        editTextEndHour = findViewById(R.id.editTextEndHour);
+        editTextRoom = findViewById(R.id.editTextRoom);
+
+        Button buttonAdd = findViewById(R.id.buttonAdd);
+        Button buttonCancel = findViewById(R.id.buttonCancel);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add(getContext().getString(R.string.mon));
+        list.add(getContext().getString(R.string.tue));
+        list.add(getContext().getString(R.string.wed));
+        list.add(getContext().getString(R.string.thu));
+        list.add(getContext().getString(R.string.fri));
+        list.add(getContext().getString(R.string.sat));
+        list.add(getContext().getString(R.string.sun));
+
+        mapDynLanguageToEnglish = new HashMap<>();
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.mon),"Mon");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.tue),"Tue");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.wed),"Wed");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.thu),"Thu");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.fri),"Fri");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.sat),"Sat");
+        mapDynLanguageToEnglish.put(getContext().getString(R.string.sun),"Sun");
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(),R.layout.spinner_item, list);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerDay.setAdapter(arrayAdapter);
 
-        editTextLessonName = (EditText) findViewById(R.id.editTextLessonName);
-        editTextCity = (EditText) findViewById(R.id.editTextCity);
-        editTextStartHour = (EditText) findViewById(R.id.editTextStartHour);
-        editTextEndHour = (EditText) findViewById(R.id.editTextEndHour);
-        editTextRoom = (EditText) findViewById(R.id.editTextRoom);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String theme = sharedPreferences.getString("param_theme", "dark");
-
-
-
 
         //time picker will open when clicked on edit text linked to time
-        editTextStartHour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int themeId = R.style.MyDialogThemeShared;
+        editTextStartHour.setOnClickListener(v -> {
+            int themeId = R.style.MyDialogThemeShared;
 
-                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),themeId, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        editTextStartHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
-                    }
-                }, 8, 0, true);//24 hour time
-                mTimePicker.setTitle(getContext().getString(R.string.select_start_time));
-                mTimePicker.show();
-            }
-        });
+            String timeEndStart[] = editTextStartHour.getText().toString().split(":");
+            String timeEndEnd[] = editTextEndHour.getText().toString().split(":");
 
-        editTextEndHour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int themeId = R.style.MyDialogThemeShared;
+            int hourEnd = 8;
+            int minEnd = 0;
 
-                String timeEnd[] = editTextStartHour.getText().toString().split(":");
-
-                int hourEnd = 8;
-                int minEnd = 0;
-
-                if(timeEnd.length == 2)
-                {
-                    hourEnd = Integer.valueOf(timeEnd[0])+1;
-                    minEnd = Integer.valueOf(timeEnd[1]);
-                    if(hourEnd > 24)
-                        hourEnd = 24;
+            if(timeEndStart.length == 2)
+            {
+                hourEnd = Integer.valueOf(timeEndStart[0]);
+                minEnd = Integer.valueOf(timeEndStart[1]);
+            }else if(timeEndEnd.length == 2)
+            {
+                hourEnd = Integer.valueOf(timeEndEnd[0])-1;
+                minEnd = Integer.valueOf(timeEndEnd[1]);
+                if(hourEnd < 0) {
+                    hourEnd = 0;
+                    minEnd = 0;
                 }
 
-                TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),themeId, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        editTextEndHour.setText(String.format("%02d:%02d",selectedHour,selectedMinute));
-                    }
-                }, hourEnd, minEnd, true);//24 hour time
-                mTimePicker.setTitle(getContext().getString(R.string.select_end_time));
-                mTimePicker.show();
             }
+
+            TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),
+                    themeId,
+                    (timePicker, selectedHour, selectedMinute) -> editTextStartHour.setText(String.format(Locale.US, "%02d:%02d",selectedHour,selectedMinute)),
+                    hourEnd,
+                    minEnd,
+                    true);//24 hour time
+            mTimePicker.setTitle(getContext().getString(R.string.select_start_time));
+            mTimePicker.show();
         });
 
-        buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        buttonCancel = (Button) findViewById(R.id.buttonCancel);
+        editTextEndHour.setOnClickListener(v -> {
+            int themeId = R.style.MyDialogThemeShared;
+
+            String timeEndStart[] = editTextStartHour.getText().toString().split(":");
+            String timeEndEnd[] = editTextEndHour.getText().toString().split(":");
+
+            int hourEnd = 8;
+            int minEnd = 0;
+
+            if(timeEndEnd.length == 2)
+            {
+                hourEnd = Integer.valueOf(timeEndEnd[0]);
+                minEnd = Integer.valueOf(timeEndEnd[1]);
+            }
+            else if(timeEndStart.length == 2)
+            {
+                hourEnd = Integer.valueOf(timeEndStart[0])+1;
+                minEnd = Integer.valueOf(timeEndStart[1]);
+                if(hourEnd > 23 ) {
+                    hourEnd = 23;
+                    minEnd = 59;
+                }
+            }
+
+            TimePickerDialog mTimePicker = new TimePickerDialog(getContext(),
+                    themeId,
+                    (timePicker, selectedHour, selectedMinute) -> editTextEndHour.setText(String.format(Locale.US, "%02d:%02d",selectedHour,selectedMinute)),
+                    hourEnd,
+                    minEnd,
+                    true);//24 hour time
+            mTimePicker.setTitle(getContext().getString(R.string.select_end_time));
+            mTimePicker.show();
+        });
+
+
 
         buttonAdd.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
@@ -190,7 +219,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
 
 
     //show a toast message
-    void message(String s)
+    private void message(String s)
     {
         Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
     }
@@ -207,7 +236,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                 String lesson = editTextLessonName.getText().toString();
                 String room = editTextRoom.getText().toString();
                 String city = editTextCity.getText().toString();
-                String day = spinnerDay.getSelectedItem().toString();
+                String day = mapDynLanguageToEnglish.get(spinnerDay.getSelectedItem().toString());
 
                 switch (mode)
                 {
@@ -244,6 +273,5 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
                 this.dismiss();
                 break;
         }
-
     }
 }

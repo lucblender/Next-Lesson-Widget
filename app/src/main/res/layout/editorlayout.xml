@@ -69,15 +69,75 @@
             android:id="@+id/recyclerView"/>
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floating_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_add"
-        android:layout_marginEnd="16dp"
-        app:elevation="0dp"/>
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        app:menu_fab_size="normal"
+        app:menu_showShadow="false"
+        app:menu_colorNormal="?android:colorAccent"
+        app:menu_colorPressed="?colorPrimary"
+        app:menu_colorRipple="?colorPrimaryDark"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        app:menu_labels_textColor="?android:textColorPrimary"
+        app:menu_labels_colorNormal="?android:colorPrimaryDark"
+        app:menu_labels_colorPressed="?colorPrimary"
+        app:menu_labels_colorRipple="?colorAccent"
+        app:menu_backgroundColor="@android:color/transparent"
+        app:menu_fab_label="">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_menu_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fab_add"
+            android:tint="?android:textColorPrimary"
+            app:fab_colorNormal="?android:colorPrimaryDark"
+            app:fab_colorPressed="?colorPrimary"
+            app:fab_colorRipple="?colorAccent"
+            app:fab_size="mini"
+            app:fab_label="@string/add_lesson" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_menu_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_new_file"
+            android:tint="?android:textColorPrimary"
+            app:fab_colorNormal="?android:colorPrimaryDark"
+            app:fab_colorPressed="?colorPrimary"
+            app:fab_colorRipple="?colorAccent"
+            app:fab_size="mini"
+            app:fab_label="@string/create_new_blank" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_menu_deleteAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_delete"
+            android:tint="?android:textColorPrimary"
+            app:fab_colorNormal="?android:colorPrimaryDark"
+            app:fab_colorPressed="?colorPrimary"
+            app:fab_colorRipple="?colorAccent"
+            app:fab_size="mini"
+            app:fab_label="@string/delete_all" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/floating_menu_Help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_test_plus"
+            android:tint="?android:textColorPrimary"
+            app:fab_colorNormal="?android:colorPrimaryDark"
+            app:fab_colorPressed="?colorPrimary"
+            app:fab_colorRipple="?colorAccent"
+            app:fab_size="mini"
+            app:fab_label="@string/help" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>
 

@@ -1,13 +1,8 @@
 package com.lucblender.lucasbonvin.widgettest;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -17,10 +12,9 @@ import android.widget.TextView;
 import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
 import com.lucblender.lucasbonvin.widgettest.Data.LessonLine;
 import com.lucblender.lucasbonvin.widgettest.UserInterface.AddLessonDialog;
+import com.lucblender.lucasbonvin.widgettest.UserInterface.DeleteCustomDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder>{
     private ArrayList<LessonLine> mLessonLines;
@@ -133,7 +127,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     }
 
 
-    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnCreateContextMenuListener {
+    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final String TAG = LessonViewHolder.class.getName();
 
         //create all textview and will link them to R
@@ -180,51 +174,51 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         public LinearLayout layoutSAT;
         public LinearLayout layoutSUN;
 
-        private final Map<Integer, String> idToDay = new HashMap<>();
-        private final Map<Integer, TextView> idToTimeTextView = new HashMap<>();
-        private final Map<Integer, TextView> idToLessonTextView = new HashMap<>();
-        private final Map<Integer, TextView> idToRoomTextView = new HashMap<>();
-        private final Map<Integer, TextView> idToCityTextView = new HashMap<>();
+        private final SparseArray<String> idToDay = new SparseArray<>();
+        private final SparseArray<TextView> idToTimeTextView = new SparseArray<>();
+        private final SparseArray<TextView> idToLessonTextView = new SparseArray<>();
+        private final SparseArray<TextView> idToRoomTextView = new SparseArray<>();
+        private final SparseArray<TextView> idToCityTextView = new SparseArray<>();
 
         public LessonViewHolder(View itemView) {
 
             super(itemView);
 
             //link all text view
-            timeMon = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeMon);
-            lessonMon = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonMon);
-            locationMon = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationMon);
-            roomMon = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomMon);
+            timeMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeMon);
+            lessonMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonMon);
+            locationMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationMon);
+            roomMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomMon);
 
-            timeTue = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeTue);
-            lessonTue = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonTue);
-            locationTue = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationTue);
-            roomTue = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomTue);
+            timeTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeTue);
+            lessonTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonTue);
+            locationTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationTue);
+            roomTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomTue);
 
-            timeWed = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeWed);
-            lessonWed = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonWed);
-            locationWed = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationWed);
-            roomWed = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomWed);
+            timeWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeWed);
+            lessonWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonWed);
+            locationWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationWed);
+            roomWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomWed);
 
-            timeThu = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeThu);
-            lessonThu = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonThu);
-            locationThu = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationThu);
-            roomThu = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomThu);
+            timeThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeThu);
+            lessonThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonThu);
+            locationThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationThu);
+            roomThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomThu);
 
-            timeFri = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeFri);
-            lessonFri = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonFri);
-            locationFri = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationFri);
-            roomFri = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomFri);
+            timeFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeFri);
+            lessonFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonFri);
+            locationFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationFri);
+            roomFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomFri);
 
-            timeSat = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSat);
-            lessonSat = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSat);
-            locationSat = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSat);
-            roomSat = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSat);
+            timeSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSat);
+            lessonSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSat);
+            locationSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSat);
+            roomSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSat);
 
-            timeSun = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSun);
-            lessonSun = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSun);
-            locationSun = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSun);
-            roomSun = (TextView) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSun);
+            timeSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSun);
+            lessonSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSun);
+            locationSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSun);
+            roomSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSun);
 
             lessonMon.setSelected(true);
             lessonTue.setSelected(true);
@@ -250,30 +244,21 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             roomSat.setSelected(true);
             roomSun.setSelected(true);
 
-            layoutMON = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON);
-            layoutTUE = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE);
-            layoutWED = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED);
-            layoutTHU = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU);
-            layoutFRI = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI);
-            layoutSAT = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT);
-            layoutSUN = (LinearLayout) itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN);
+            layoutMON = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON);
+            layoutTUE = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE);
+            layoutWED = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED);
+            layoutTHU = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU);
+            layoutFRI = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI);
+            layoutSAT = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT);
+            layoutSUN = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN);
 
-            layoutMON.setOnLongClickListener(this);
-            layoutTUE.setOnLongClickListener(this);
-            layoutWED.setOnLongClickListener(this);
-            layoutTHU.setOnLongClickListener(this);
-            layoutFRI.setOnLongClickListener(this);
-            layoutSAT.setOnLongClickListener(this);
-            layoutSUN.setOnLongClickListener(this);
-
-
-            layoutMON.setOnCreateContextMenuListener(this);
-            layoutTUE.setOnCreateContextMenuListener(this);
-            layoutWED.setOnCreateContextMenuListener(this);
-            layoutTHU.setOnCreateContextMenuListener(this);
-            layoutFRI.setOnCreateContextMenuListener(this);
-            layoutSAT.setOnCreateContextMenuListener(this);
-            layoutSUN.setOnCreateContextMenuListener(this);
+            layoutMON.setOnClickListener(this);
+            layoutTUE.setOnClickListener(this);
+            layoutWED.setOnClickListener(this);
+            layoutTHU.setOnClickListener(this);
+            layoutFRI.setOnClickListener(this);
+            layoutSAT.setOnClickListener(this);
+            layoutSUN.setOnClickListener(this);
 
             idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, "Mon");
             idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, "Tue");
@@ -318,44 +303,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         }
 
 
-        @Override
-        public boolean onLongClick(View v) {
 
-            if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
-                //creating a popup menu
-                PopupMenu popup = new PopupMenu(v.getContext(), v);
-                //inflating menu from xml resource
-                popup.inflate(R.menu.context_menu_lesson);
-                //adding click listener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.contextDelete:
-                                return deleteItem(v);
-                            case R.id.contextDuplicate:
-                                return duplicateItem(v);
-                            case R.id.contextModify:
-                                return modifyItem(v);
-                            default:
-                                return false;
-                        }
-                    }
-                });
-                //displaying the popup
-                popup.show();
-            }
-            return true;
-        }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Select The Action");
-            menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
-            menu.add(0, v.getId(), 0, "SMS");
-        }
-
-        public boolean deleteItem(View v) {
+        private boolean deleteItem(View v) {
             final int position = this.getLayoutPosition();
             final View view = v;
             switch (v.getId()) {
@@ -369,32 +318,30 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         //setup a popup to prevent miss-click
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                        new DeleteCustomDialog(v.getContext())
+                                .setCustomDialogTitle(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete))
+                                .setCustomDialogText(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message) + idToLessonTextView.get(view.getId()).getText() + "\" ?")
+                                .setTextLeftButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.yes))
+                                .setTextRightButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.cancel))
+                                .setCustomOnClickListener( new DeleteCustomDialog.OnClickListener() {
+                                    @Override
+                                    public void buttonRightClick() {
+                                        DataCsvManager.getInstance().deleteLine(view.getContext(), idToDay.get(view.getId()), position);
+                                    }
 
-                        String theme = sharedPreferences.getString("param_theme", "dark");
+                                    @Override
+                                    public void buttonLeftClick() {
 
-                        int themeId = R.style.MyDialogThemeShared;
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), themeId);
-                        builder.setTitle(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete));
-                        builder.setMessage(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.delete_warning_message) + idToLessonTextView.get(view.getId()).getText() + "\" ?");
-                        builder.setPositiveButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.yes), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                DataCsvManager.getInstance().deleteLine(view.getContext(), idToDay.get(view.getId()), position);
-                            }
-                        });
-                        builder.setNegativeButton(v.getContext().getString(com.lucblender.lucasbonvin.widgettest.R.string.cancel), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
-                        });
-                        builder.show();
+                                    }
+                                })
+                                .show();
                     }
                     return true;
             }
             return false;
         }
 
-        public boolean modifyItem(View v) {
+        private boolean modifyItem(View v) {
             final int position = this.getLayoutPosition();
             switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
@@ -423,7 +370,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         }
 
 
-        public boolean duplicateItem(View v) {
+        private boolean duplicateItem(View v) {
             switch (v.getId()) {
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
                 case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
@@ -448,6 +395,31 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                     }
             }
             return true;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
+                //creating a popup menu
+                PopupMenu popup = new PopupMenu(v.getContext(), v);
+                //inflating menu from xml resource
+                popup.inflate(R.menu.context_menu_lesson);
+                //adding click listener
+                popup.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.contextDelete:
+                            return deleteItem(v);
+                        case R.id.contextDuplicate:
+                            return duplicateItem(v);
+                        case R.id.contextModify:
+                            return modifyItem(v);
+                        default:
+                            return false;
+                    }
+                });
+                //displaying the popup
+                popup.show();
+            }
         }
     }
 

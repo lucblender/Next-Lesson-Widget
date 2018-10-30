@@ -33,8 +33,6 @@ public class UpdateService extends JobService {
         staticDays.put("Sun", "Sunday");
     }
 
-
-
     @Override
     public boolean onStopJob(JobParameters params) {
         return false;

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
+import com.lucblender.lucasbonvin.widgettest.R;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -20,12 +22,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataCsvManager extends Observable{
 
     private static final String TAG = DataCsvManager.class.getName();
+    private static final String defaultFolder = "/data";
+    private static final String defaultFile = "/myFirstPlanning.csv";
 
     private static DataCsvManager instance;
 
@@ -129,12 +134,11 @@ public class DataCsvManager extends Observable{
 
                 int lineToAppend = 0;
                 boolean found = false;
-                CSVReader totoR = new CSVReader(new FileReader(fileUriExtension.URI));
-                List<String[]> lines = totoR.readAll();
-                totoR.close();
+                CSVReader csvReader = new CSVReader(new FileReader(fileUriExtension.URI));
+                List<String[]> lines = csvReader.readAll();
+                csvReader.close();
 
                 if(lines.size()==0) {
-                    lineToAppend = 0;
                     found = true;
                 }
                 else
@@ -171,7 +175,7 @@ public class DataCsvManager extends Observable{
                 }
 
                 //if lesson wasn't found --> add 1 to append at the end of the file
-                if(found == false)
+                if(!found)
                     lineToAppend = lineToAppend+1;
 
                 lines.add(lineToAppend,csvLine);
@@ -180,12 +184,14 @@ public class DataCsvManager extends Observable{
 
                 // delete out file if it exists
                 if (outFile.exists()) {
-                    outFile.delete();
+                    boolean isDelete = outFile.delete();
+                    if(!isDelete)
+                        message(context, "Couldn't delete "+fileUriExtension.URI);
                 }
 
-                CSVWriter totoW = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
-                totoW.writeAll(lines);
-                totoW.close();
+                CSVWriter csvWriter = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
+                csvWriter.writeAll(lines);
+                csvWriter.close();
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -211,8 +217,8 @@ public class DataCsvManager extends Observable{
 
         if(fileUriExtension.Extension.compareTo("csv") == 0) {
             try {
-                CSVReader totoR = new CSVReader(new FileReader(fileUriExtension.URI));
-                totoR.close();
+                CSVReader csvReader = new CSVReader(new FileReader(fileUriExtension.URI));
+                csvReader.close();
             } catch (Exception e) {
                 //cannot open file
                 return false;
@@ -224,14 +230,8 @@ public class DataCsvManager extends Observable{
             return false;
         }
 
-        if(mStart.matches() && mEnd.matches())
-        {
-            return true;
-        }
-        else {
-            //hours wrong format
-            return false;
-        }
+        //hours wrong format
+        return mStart.matches() && mEnd.matches();
     }
 
     public boolean deleteLine(Context context, String day, int lessonLine)
@@ -239,9 +239,9 @@ public class DataCsvManager extends Observable{
         FileUriExtension  fileUriExtension = getCsvFile(context);
 
         try {
-            CSVReader totoR = new CSVReader(new FileReader(fileUriExtension.URI));
-            List<String[]> lines = totoR.readAll();
-            totoR.close();
+            CSVReader csvReader = new CSVReader(new FileReader(fileUriExtension.URI));
+            List<String[]> lines = csvReader.readAll();
+            csvReader.close();
 
             int lessonOnDay = 0;
             int i = 0;
@@ -273,13 +273,42 @@ public class DataCsvManager extends Observable{
                 outFile.delete();
             }
 
-            CSVWriter totoW = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
-            totoW.writeAll(lines);
-            totoW.close();
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
+            csvWriter.writeAll(lines);
+            csvWriter.close();
 
             setChanged();
             notifyObservers();
 
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteAll(Context context)
+    {
+        FileUriExtension  fileUriExtension = getCsvFile(context);
+
+        try {
+
+            File outFile = new File(fileUriExtension.URI);
+
+            // delete out file if it exists
+            if (outFile.exists()) {
+                boolean isDelete = outFile.delete();
+                if(!isDelete)
+                    return false;
+            }
+
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(fileUriExtension.URI, false));
+            csvWriter.close();
+
+            setChanged();
+            notifyObservers();
             return true;
         }
         catch (Exception e)
@@ -410,16 +439,22 @@ public class DataCsvManager extends Observable{
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         prefFile.URI  = preferences.getString("filePicker", "NA");
 
-        if(prefFile.URI=="NA")
+        if(prefFile.URI.equals("NA"))
         {
-            File folder = new File(Environment.getExternalStorageDirectory()+"/data");
-            if(!folder.exists())
-                folder.mkdir();
+            File folder = new File(Environment.getExternalStorageDirectory()+defaultFolder);
+            if(!folder.exists()) {
+                boolean isCreated = folder.mkdir();
+                if(!isCreated)
+                    message(context, context.getString(R.string.error_create_folder)+Environment.getExternalStorageDirectory()+defaultFolder);
+            }
 
-            File file = new File(Environment.getExternalStorageDirectory()+"/data/myFirstPlanning.csv");
+            File file = new File(Environment.getExternalStorageDirectory()+defaultFolder+defaultFile);
             try {
-                if (!file.exists())
-                    file.createNewFile();
+                if (!file.exists()) {
+                    boolean isCreated = file.createNewFile();
+                    if(!isCreated)
+                        message(context, context.getString(R.string.error_create_file)+Environment.getExternalStorageDirectory()+defaultFolder+defaultFile);
+                }
                 prefFile.URI = file.getAbsolutePath();
 
                 SharedPreferences.Editor editor = preferences.edit();
@@ -440,6 +475,56 @@ public class DataCsvManager extends Observable{
         prefFile.Extension = parsedUri[parsedUri.length - 1];
 
         return prefFile;
+    }
+
+    public boolean createFile(Context context, String fileName)
+    {
+        //test if needed to create folder, then file
+        File folder = new File(Environment.getExternalStorageDirectory()+defaultFolder);
+        if(!folder.exists()){
+            boolean isCreated = folder.mkdir();
+            if(!isCreated)
+                message(context, context.getString(R.string.error_create_folder)+Environment.getExternalStorageDirectory()+defaultFolder);
+        }
+
+        String filePath = Environment.getExternalStorageDirectory()+defaultFolder+"/"+fileName;
+
+        File file = new File(filePath);
+        try {
+            if (!file.exists()){
+                boolean isCreated = file.createNewFile();
+                if(!isCreated)
+                    message(context, context.getString(R.string.error_create_file)+Environment.getExternalStorageDirectory()+defaultFolder+"/"+fileName);
+            }
+
+            //add the file as selected calendar
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("filePicker", filePath);
+            editor.apply();
+
+            //add it to the calendar collection
+            Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+
+            favoritePath.add(filePath);
+            editor.putStringSet("favoritePath",  favoritePath);
+            editor.apply();
+
+            setChanged();
+            notifyObservers();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return  false;
+        }
+    }
+
+
+    private void message(Context context, String s)
+    {
+        Toast.makeText(context,s,Toast.LENGTH_LONG).show();
     }
 
 

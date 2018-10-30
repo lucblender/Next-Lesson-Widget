@@ -10,7 +10,5 @@
         <item name="ThemeBorderNoHighlight">@color/borderNoHighlightDebug</item>
         <item name="ThemeBorderHighlight">@color/borderHighlightDebug</item>
         <item name="ThemeAccentMaterial">@color/accentMaterialDebug</item>
-
-        <item name="logo_lb">@mipmap/ic_lb_logo</item>
     </style>
 </resources>

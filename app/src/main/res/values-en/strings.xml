@@ -52,7 +52,7 @@
     <string name="sat">Sat</string>
     <string name="sun">Sun</string>
     <string name="next_lesson">Next Lesson:</string>
-    <string name="choose_csv">Choose your calendar csv file</string>
+    <string name="choose_csv">Choose your planning csv file</string>
     <string name="open_file">Open Selected File</string>
     <string name="help">Help</string>
     <string name="change_language">Change Language</string>
@@ -74,5 +74,23 @@
     <string name="send_planning">Send your planning file to someone else</string>
     <string name="choose_theme">Choose theme</string>
     <string name="warning_no_widget"><![CDATA[It seems that you have no widget on your main screen, go on your HomeScreen and choose: <br> <i>\"Next Lesson Widget\"</i>]]></string>
+    <string name="delete_all_warning"><![CDATA[Are you sure you  want to delete <u><b>ALL</b></u> your current planning?]]></string>
+    <string name="cannot_delete_planning">You cannot delete your last selected planning</string>
+    <string name="warning_delete_file_1">Are you sure you want to delete \"</string>
+    <string name="warning_delete_file_2">\" from your file collection?</string>
+    <string name="add_planning_file">Add a new planning path</string>
+    <string name="new_planning_created">Your new planning file is created, you can now add new lessons.</string>
+    <string name="error_create_file">Couldn\'t create new file:</string>
+    <string name="invalid_file_name">Please enter a valid file name.</string>
+    <string name="file_name">File Name:</string>
+    <string name="create">Create</string>
+    <string name="create_new_file">Create a new blank planning file</string>
+    <string name="delete_all">Delete all lessons</string>
+    <string name="create_new_blank">Create a new blank planning</string>
+    <string name="choose_planning_help">Choose your planning Help</string>
+    <string name="choose_planning_help_text">You can choose your planning from your planning file collection simply by selecting it or adding a new one. If you want to delete a planning file from your collection, simply long click on it.</string>
+    <string name="error_create_folder">Couldn\'t create new folder:</string>
+    <string name="delete_all_error">Couldn\'t delete all your lessons, error with file.</string>
+
 
 </resources>

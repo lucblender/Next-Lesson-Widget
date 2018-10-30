@@ -36,21 +36,14 @@ public class Lesson {
         this.room= room;
     }
 
-    public boolean isDayToday()
+    private boolean isDayToday()
     {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         String dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
 
-        if(dayOfWeek.compareTo(this.day)==0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return dayOfWeek.compareTo(this.day) == 0;
     }
 
     public boolean isLessonNow()
@@ -85,13 +78,7 @@ public class Lesson {
                 lessonHoursEnd.set(Calendar.MINUTE, Integer.parseInt(partsEnd[1]));
                 lessonHoursEnd.set(Calendar.SECOND, 0);
 
-                if (todayHours.after(lessonHoursStart) && todayHours.before(lessonHoursEnd)) {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return todayHours.after(lessonHoursStart) && todayHours.before(lessonHoursEnd);
             }
             else
             {

@@ -10,7 +10,5 @@
         <item name="ThemeBorderNoHighlight">@color/borderNoHighlightBlueNeon</item>
         <item name="ThemeBorderHighlight">@color/borderHighlightBlueNeon</item>
         <item name="ThemeAccentMaterial">@color/accentMaterialBlueNeon</item>
-
-        <item name="logo_lb">@mipmap/ic_lb_logo</item>
     </style>
 </resources>

@@ -9,7 +9,7 @@
     <string name="select_end_time">Sélectionner l\'heure de fin</string>
     <string name="select_start_time">Sélectionner l\'heure de début</string>
     <string name="modify_button">Modifier</string>
-    <string name="modify_title">Modifier la lesson</string>
+    <string name="modify_title">Modifier la leçon</string>
     <string name="help_title">Aide</string>
     <string name="permission_granted">Permission accordée</string>
     <string name="permission_not_granted">Permission à l\'accès au médi non accordée</string>
@@ -41,11 +41,11 @@
     <string name="sat">Sam</string>
     <string name="sun">Dim</string>
     <string name="next_lesson">Next Lesson</string>
-    <string name="choose_csv">Choisir votre fichier csv de calendrier</string>
+    <string name="choose_csv">Choisir votre fichier csv de planning</string>
     <string name="open_file">Ouvrir le fichier sélectionné</string>
     <string name="help">Aide</string>
     <string name="change_language">Changer la langue</string>
-    <string name="about">About</string>
+    <string name="about">À propos</string>
     <string name="help_text_1">User Interface Widget:</string>
     <string name="help_text_2">• Widget, prochaine leçon</string>
     <string name="help_text_3">User interface du planning:</string>
@@ -67,11 +67,29 @@
         <item>fr</item>
     </string-array>
     <string name="send_file">Envoyer le planning</string>
-    <string name="duplicate_lesson">Dupliquer la lesson</string>
+    <string name="duplicate_lesson">Dupliquer la leçon</string>
     <string name="duplicate">Dupliquer</string>
     <string name="modify">Modifier</string>
     <string name="open_csv">Ouvrir votre planning csv avec une application dédiée</string>
     <string name="send_planning">Envoyer le fichier de votre planning</string>
     <string name="choose_theme">Choisir un thème</string>
     <string name="warning_no_widget"><![CDATA[Il semble que vous n’ayez pas de widget sur votre écran principal, accédez à votre écran d’accueil et choisissez:  <br> <i>\"Next Lesson Widget\"</i>]]></string>
+    <string name="delete_all_warning"><![CDATA[Êtes-vous sûr de vouloir supprimer <u><b>TOUT</b></u> votre planning actuel?]]></string>
+    <string name="cannot_delete_planning">Vous ne pouvez pas supprimer votre dernier programme sélectionné</string>
+    <string name="warning_delete_file_1">Etes-vous sûr de vouloir supprimer \"</string>
+    <string name="warning_delete_file_2">\" de votre collection de fichiers?</string>
+    <string name="add_planning_file">Ajouter un nouveau chemin de planning</string>
+    <string name="new_planning_created">Votre nouveau fichier de planning est créé, vous pouvez maintenant ajouter de nouvelles leçons.</string>
+    <string name="error_create_file">Impossible de créer le nouveau fichier:</string>
+    <string name="invalid_file_name">Veuillez entrer un nom de fichier valide.</string>
+    <string name="file_name">Nom de fichier:</string>
+    <string name="create">Créer</string>
+    <string name="create_new_file">Créer un nouveau fichier de planning vierge</string>
+    <string name="delete_all">Supprimer toutes les leçons</string>
+    <string name="create_new_blank">Créer un nouveau planning vierge</string>
+    <string name="choose_planning_help">Choisir votre planning Aide</string>
+    <string name="choose_planning_help_text">Vous pouvez choisir votre planning à partir de votre collection de fichiers de planning simplement en le sélectionnant ou en en ajoutant un nouveau. Si vous souhaitez supprimer un planning de votre collection, cliquez simplement dessus.</string>
+    <string name="error_create_folder">Impossible de créer le nouveau dossier:</string>
+    <string name="delete_all_error">Impossible de supprimer toutes vos leçons, erreur avec le fichier.</string>
+
 </resources>

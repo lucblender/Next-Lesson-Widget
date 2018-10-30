@@ -25,6 +25,7 @@ import com.lucblender.lucasbonvin.widgettest.UpdateService;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import java.util.Locale;
+import java.util.Set;
 
 public class ScreenSliderActivity  extends AppCompatActivity implements AppPreferenceFragment.PreferenceListener {
 
@@ -35,8 +36,6 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
     private static final int NUM_PAGES = 2;
 
     private ViewPager mPager;
-    private PagerAdapter mPagerAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +45,21 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
 
         String theme = sharedPreferences.getString("param_theme", "dark");
 
-        if(theme.equals("light"))
-            setTheme(R.style.AppThemeLight);
-        else if(theme.equals("dark"))
-            setTheme(R.style.AppThemeDark);
-        else if(theme.equals("blueneon"))
-            setTheme(R.style.AppThemeBlueNeon);
+        switch (theme) {
+            case "light":
+                setTheme(R.style.AppThemeLight);
+                break;
+            case "dark":
+                setTheme(R.style.AppThemeDark);
+                break;
+            case "blueneon":
+                setTheme(R.style.AppThemeBlueNeon);
+                break;
+            case "test":
+                setTheme(R.style.AppThemeDebug);
+                break;
+        }
+
 
         super.onCreate(savedInstanceState);
 
@@ -65,18 +73,16 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
 
         setContentView(R.layout.screenslider);
 
-        ViewPager mImageViewPager = (ViewPager) findViewById(R.id.pager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
-        tabLayout.setupWithViewPager(mImageViewPager, true);
-
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher_legacy_only);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        mPager = findViewById(R.id.pager);
+        TabLayout tabLayout = findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(mPager, true);
+
         // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
@@ -90,6 +96,7 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         }
 
         updateMyWidgets(getApplicationContext());
+
     }
 
     @Override
@@ -159,6 +166,12 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("filePicker", filePath);
             editor.apply();
+
+            Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+
+            favoritePath.add(filePath);
+            editor.putStringSet("favoritePath",  favoritePath);
+            editor.apply();
             //call the service that update the widget from the selected file
             try{
                 startService(new Intent(this, UpdateService.class));
@@ -181,13 +194,13 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
     }
 
     //show a toast message
-    void message(String s)
+    private void message(String s)
     {
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
     //show a toast message
-    void messageHTML(String s)
+    private void messageHTML(String s)
     {
-        Toast.makeText(this, Html.fromHtml(s), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, Html.fromHtml(s), Toast.LENGTH_LONG).show();
     }
 }
