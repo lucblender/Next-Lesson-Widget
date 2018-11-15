@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="com.lucblender.lucasbonvin.widgettest.UserInterface.WidgetParametersActivity"
     android:initialLayout="@layout/widget"
     android:minHeight="72dp"
     android:minWidth="72dp"

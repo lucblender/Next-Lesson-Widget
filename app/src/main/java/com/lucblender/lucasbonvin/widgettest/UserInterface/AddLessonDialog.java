@@ -1,3 +1,26 @@
+/*
+Copyright © 2018, Lucas Bonvin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the “Software”), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+The Software is provided “as is”, without warranty of any kind, express or implied, including but
+not limited to the warranties of merchantability, fitness for a particular purpose and
+noninfringement. In no event shall the authors or copyright holders be liable for any claim,
+damages or other liability, whether in an action of contract, tort or otherwise, arising from,
+out of or in connection with the software or the use or other dealings in the Software.
+
+Except as contained in this notice, the name of Lucas Bonvin shall not be used in
+advertising or otherwise to promote the sale, use or other dealings in this Software without
+prior written authorization from Lucas Bonvin.
+ */
+
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
 import android.app.Dialog;
@@ -41,6 +64,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
     private int lessonLineToDelete;
 
     private Map<String, String> mapDynLanguageToEnglish;
+    private Map<String, String> mapDynEnglishToLanguage;
 
 
     enum modifyMode {
@@ -113,6 +137,15 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         mapDynLanguageToEnglish.put(getContext().getString(R.string.fri),"Fri");
         mapDynLanguageToEnglish.put(getContext().getString(R.string.sat),"Sat");
         mapDynLanguageToEnglish.put(getContext().getString(R.string.sun),"Sun");
+
+        mapDynEnglishToLanguage = new HashMap<>();
+        mapDynEnglishToLanguage.put("Mon",getContext().getString(R.string.mon));
+        mapDynEnglishToLanguage.put("Tue",getContext().getString(R.string.tue));
+        mapDynEnglishToLanguage.put("Wed",getContext().getString(R.string.wed));
+        mapDynEnglishToLanguage.put("Thu",getContext().getString(R.string.thu));
+        mapDynEnglishToLanguage.put("Fri",getContext().getString(R.string.fri));
+        mapDynEnglishToLanguage.put("Sat",getContext().getString(R.string.sat));
+        mapDynEnglishToLanguage.put("Sun",getContext().getString(R.string.sun));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(),R.layout.spinner_item, list);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -197,7 +230,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         {
             ((TextView)findViewById(R.id.addLessonTitle)).setText(R.string.duplicate_lesson);
             buttonAdd.setText(R.string.add);
-            spinnerDay.setSelection(arrayAdapter.getPosition(dayModify));
+            spinnerDay.setSelection(arrayAdapter.getPosition(mapDynEnglishToLanguage.get(dayModify)));
             editTextLessonName.setText(lessonName);
             editTextCity.setText(city);
             editTextStartHour.setText(startHour);
@@ -208,7 +241,7 @@ public class AddLessonDialog extends Dialog implements View.OnClickListener{
         {
             ((TextView)findViewById(R.id.addLessonTitle)).setText(R.string.modify_title);
             buttonAdd.setText(R.string.modify_button);
-            spinnerDay.setSelection(arrayAdapter.getPosition(dayModify));
+            spinnerDay.setSelection(arrayAdapter.getPosition(mapDynEnglishToLanguage.get(dayModify)));
             editTextLessonName.setText(lessonName);
             editTextCity.setText(city);
             editTextStartHour.setText(startHour);

@@ -44,6 +44,7 @@
     <string name="choose_csv">Choisir votre fichier csv de planning</string>
     <string name="open_file">Ouvrir le fichier sélectionné</string>
     <string name="help">Aide</string>
+    <string name="parameters">Paramètres</string>
     <string name="change_language">Changer la langue</string>
     <string name="about">À propos</string>
     <string name="help_text_1">User Interface Widget:</string>
@@ -91,5 +92,19 @@
     <string name="choose_planning_help_text">Vous pouvez choisir votre planning à partir de votre collection de fichiers de planning simplement en le sélectionnant ou en en ajoutant un nouveau. Si vous souhaitez supprimer un planning de votre collection, cliquez simplement dessus.</string>
     <string name="error_create_folder">Impossible de créer le nouveau dossier:</string>
     <string name="delete_all_error">Impossible de supprimer toutes vos leçons, erreur avec le fichier.</string>
+    <string name="widget_customization">Personnalisation du widget</string>
+    <string name="preview">Aperçu</string>
+    <string name="choose_color">Choix de couleur</string>
+    <string name="alpha">Alpha</string>
+    <string name="next">Next</string>
+    <string name="planning_file">Fichier de planning</string>
+    <string name="ok">OK</string>
+    <string name="help_widget_param_text_1">Vous pouvez modifier l\'apparence de chaque widget que vous souhaitez ajouter. Sur l\'écran de prévisualisation, vous pouvez voir en temps réel votre modification.</string>
+    <string name="help_widget_param_text_2">Vous pouvez modifier :</string>
+    <string name="help_widget_param_text_3">• la couleur de fond </string>
+    <string name="help_widget_param_text_4">• la transparence du fond </string>
+    <string name="help_widget_param_text_5">• le label : Next...</string>
+    <string name="help_widget_param_text_6">• le fichier de planning</string>
+
 
 </resources>

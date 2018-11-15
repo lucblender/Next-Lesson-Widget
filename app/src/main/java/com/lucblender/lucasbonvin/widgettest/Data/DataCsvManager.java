@@ -1,3 +1,26 @@
+/*
+Copyright © 2018, Lucas Bonvin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the “Software”), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+The Software is provided “as is”, without warranty of any kind, express or implied, including but
+not limited to the warranties of merchantability, fitness for a particular purpose and
+noninfringement. In no event shall the authors or copyright holders be liable for any claim,
+damages or other liability, whether in an action of contract, tort or otherwise, arising from,
+out of or in connection with the software or the use or other dealings in the Software.
+
+Except as contained in this notice, the name of Lucas Bonvin shall not be used in
+advertising or otherwise to promote the sale, use or other dealings in this Software without
+prior written authorization from Lucas Bonvin.
+ */
+
 package com.lucblender.lucasbonvin.widgettest.Data;
 
 import android.content.Context;
@@ -317,6 +340,118 @@ public class DataCsvManager extends Observable{
             return false;
         }
     }
+    public String[] nextLessonFromCsv(Context context, String Path)
+    {
+        String [] lessonData = null;
+
+        FileUriExtension  fileUriExtension = getCsvFile(context, Path);
+
+        //if extension is correct --> parse it
+        if(fileUriExtension.Extension.compareTo("csv") == 0)
+        {
+            try
+            {
+                CSVReader reader = new CSVReader(new FileReader(fileUriExtension.URI));
+
+                String [] nextLine;
+                boolean lessonFound = false;
+
+                //create a calender to get the the day of the week and actual time
+                Date date = new Date();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                String dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(date);
+
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                int min = calendar.get(Calendar.MINUTE);
+
+                //create a clendar with just the 'hour of now'
+                Calendar todayHours = Calendar.getInstance();
+                todayHours.set(Calendar.HOUR_OF_DAY,hours);
+                todayHours.set(Calendar.MINUTE, min);
+                todayHours.set(Calendar.SECOND,0);
+
+                Calendar lessonHours = Calendar.getInstance();
+
+                //parse the csv file
+                while((nextLine = reader.readNext()) != null)
+                {
+                    if(nextLine[0].compareTo(dayOfWeek)==0)
+                    {
+                        String[] parts = nextLine[3].split(":");
+                        lessonHours.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+                        lessonHours.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
+                        lessonHours.set(Calendar.SECOND, 0);
+
+                        //test if the lesson is before or after the actual time
+                        // if before --> mean we found the next lesson
+                        if (todayHours.before(lessonHours)) {
+                            lessonFound = true;
+                            lessonData = nextLine;
+                            break;
+                        }
+                    }
+                }
+                reader.close();
+                Date dt = new Date();
+
+                int incrNumber = 0;
+
+                //if lesson still not found -> mean it's maybe next day
+                while (!lessonFound)
+                {
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(dt);
+                    //increment one day
+                    c.add(Calendar.DATE, 1);
+                    dt = c.getTime();
+                    dayOfWeek = new SimpleDateFormat("EE", Locale.ENGLISH).format(dt);
+
+                    //if we incremented more than 7 time --> we are again checking 'tomorrow'
+                    if(incrNumber > 7)
+                    {
+                        lessonFound = true;
+                    }
+                    else {
+                        //parse in the file the next lesson
+                        reader = new CSVReader(new FileReader(fileUriExtension.URI));
+                        while ((nextLine = reader.readNext()) != null) {
+                            if (nextLine[0].compareTo(dayOfWeek) == 0) {
+                                lessonFound = true;
+                                lessonData = nextLine;
+                                break;
+                            }
+                        }
+                        reader.close();
+                    }
+                    incrNumber = incrNumber+1;
+                }
+
+                if(lessonData!=null)
+                {
+                    //return correct data --> will fulfill the widget with correct data
+                    return lessonData;
+                }
+                else
+                {
+                    //didn't find any lesson --> fulfill with warning message
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                //if any error in the file --> fulfill with warning message
+                e.printStackTrace();
+                return null;
+
+            }
+        }
+        else
+        {
+            //if file not csv --> fulfill with warning message
+            return null;
+        }
+    }
 
     public String[] nextLessonFromCsv(Context context)
     {
@@ -430,14 +565,13 @@ public class DataCsvManager extends Observable{
             return null;
         }
     }
-
-    public FileUriExtension getCsvFile(Context context)
+    public FileUriExtension getCsvFile(Context context, String URI)
     {
         FileUriExtension prefFile = new FileUriExtension();
 
         //get the csv file from preferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        prefFile.URI  = preferences.getString("filePicker", "NA");
+        prefFile.URI  = URI;
 
         if(prefFile.URI.equals("NA"))
         {
@@ -468,13 +602,22 @@ public class DataCsvManager extends Observable{
 
         }
 
-
-
         String[] parsedUri = prefFile.URI.split("\\.");
         //get the extension
         prefFile.Extension = parsedUri[parsedUri.length - 1];
 
         return prefFile;
+    }
+
+    public FileUriExtension getCsvFile(Context context)
+    {
+        FileUriExtension prefFile = new FileUriExtension();
+
+        //get the csv file from preferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        prefFile.URI  = preferences.getString("filePicker", "NA");
+
+        return getCsvFile(context, preferences.getString("filePicker", "NA"));
     }
 
     public boolean createFile(Context context, String fileName)

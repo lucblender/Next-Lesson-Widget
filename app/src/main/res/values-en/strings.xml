@@ -55,6 +55,7 @@
     <string name="choose_csv">Choose your planning csv file</string>
     <string name="open_file">Open Selected File</string>
     <string name="help">Help</string>
+    <string name="parameters">Parameters</string>
     <string name="change_language">Change Language</string>
 
     <string-array name="list_lang_entries">
@@ -91,6 +92,20 @@
     <string name="choose_planning_help_text">You can choose your planning from your planning file collection simply by selecting it or adding a new one. If you want to delete a planning file from your collection, simply long click on it.</string>
     <string name="error_create_folder">Couldn\'t create new folder:</string>
     <string name="delete_all_error">Couldn\'t delete all your lessons, error with file.</string>
+    <string name="widget_customization">Widget Customization</string>
+    <string name="preview">Preview</string>
+    <string name="choose_color">Choose Color</string>
+    <string name="alpha">Alpha</string>
+    <string name="next">Next</string>
+    <string name="planning_file">Planning File</string>
+    <string name="ok">OK</string>
+    <string name="help_widget_param_text_1">You can modify the look and feel of every widget you want to add. On the preview screen you can see in real time your modification.</string>
+    <string name="help_widget_param_text_2">You can modify:</string>
+    <string name="help_widget_param_text_3">• the background color</string>
+    <string name="help_widget_param_text_4">• the background alpha</string>
+    <string name="help_widget_param_text_5">• the label : Next...</string>
+    <string name="help_widget_param_text_6">• the planning file</string>
+
 
 
 </resources>

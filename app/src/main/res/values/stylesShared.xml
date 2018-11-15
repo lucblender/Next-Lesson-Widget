@@ -40,22 +40,23 @@
     </style>
 
     <style name="ActionBarShared" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">?ThemeColorAccent</item>
         <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
         <item name="android:textColorSecondary">?ThemeColorTextSecondary</item>
         <item name="actionMenuTextColor">?ThemeColorTextPrimary</item>
-        <item name="colorControlNormal">#262626</item>
+        <item name="colorControlNormal">?ThemeColorTextPrimary</item>
     </style>
 
 
     <style name="PopupMenuShared" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="android:colorBackground">?colorAccent</item>
-        <item name="android:textColorPrimary">?android:textColorPrimary</item>
+        <item name="background">?ThemeColorAccent</item>
+        <item name="android:colorBackground">?ThemeColorAccent</item>
+        <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
     </style>
 
     <style name="WidgetActionBarShared" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="background">?colorAccent</item>
-        <item name="android:textColor">?android:textColor</item>
-        <item name="android:textColorPrimary">?android:textColorPrimary</item>
+        <item name="android:textColor">?ThemeColorTextMain</item>
+        <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
         <item name="elevation">4dp</item>
     </style>
 </resources>
