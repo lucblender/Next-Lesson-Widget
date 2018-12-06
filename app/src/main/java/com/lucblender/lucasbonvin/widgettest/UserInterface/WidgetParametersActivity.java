@@ -23,23 +23,24 @@ prior written authorization from Lucas Bonvin.
 
 package com.lucblender.lucasbonvin.widgettest.UserInterface;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
@@ -50,12 +51,20 @@ import android.widget.Toast;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.lucblender.lucasbonvin.widgettest.Data.CustomPreferencesManager;
+import com.lucblender.lucasbonvin.widgettest.Data.DataCsvManager;
 import com.lucblender.lucasbonvin.widgettest.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class WidgetParametersActivity extends AppCompatActivity {
 
@@ -63,6 +72,7 @@ public class WidgetParametersActivity extends AppCompatActivity {
 
     private int mAppWidgetId = -1;
     private int backgroundColor = 0x00ffffff;
+    private boolean isBlack = false;
     private ImageView widgetBackground;
 
     private TextView previewNextLesson;
@@ -131,16 +141,32 @@ public class WidgetParametersActivity extends AppCompatActivity {
             views.setInt(R.id.widgetBackground, "setImageAlpha", Color.alpha(backgroundColor));
             views.setTextViewText(R.id.nextLessonWidget,"Next "+spinnerNextText.getSelectedItem().toString());
 
+            if(isBlack)
+            {
+                views.setTextColor(R.id.nextLessonWidget,Color.BLACK);
+                views.setTextColor(R.id.date,Color.BLACK);
+                views.setTextColor(R.id.time,Color.BLACK);
+                views.setTextColor(R.id.lesson,Color.BLACK);
+                views.setTextColor(R.id.location,Color.BLACK);
+                views.setTextColor(R.id.room,Color.BLACK);
+            }else{
+                views.setTextColor(R.id.nextLessonWidget,Color.WHITE);
+                views.setTextColor(R.id.date,Color.WHITE);
+                views.setTextColor(R.id.time,Color.WHITE);
+                views.setTextColor(R.id.lesson,Color.WHITE);
+                views.setTextColor(R.id.location,Color.WHITE);
+                views.setTextColor(R.id.room,Color.WHITE);
+            }
+
             appWidgetManager.updateAppWidget(mAppWidgetId, views);
 
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
             setResult(RESULT_OK, resultValue);
-            Log.e(TAG, "onCreate id: " + String.valueOf(mAppWidgetId) );
             CustomPreferencesManager.getInstance().addWidgetColor(getBaseContext(), mAppWidgetId, backgroundColor);
             CustomPreferencesManager.getInstance().addWidgetPathMap(getBaseContext(), mAppWidgetId, spinnerItemToPath.get(spinnerParamFile.getSelectedItem().toString()));
             CustomPreferencesManager.getInstance().addWidgetNextText(getBaseContext(), mAppWidgetId, spinnerNextText.getSelectedItem().toString());
-            Log.e(TAG, "onCreate id: " + String.valueOf(backgroundColor) );
+            CustomPreferencesManager.getInstance().addWidgetTextColor(getBaseContext(), mAppWidgetId, isBlack);
             finish();
         });
 
@@ -164,9 +190,39 @@ public class WidgetParametersActivity extends AppCompatActivity {
         spinnerParamFile = findViewById(R.id.spinnerParamFile);
         spinnerNextText = findViewById(R.id.spinnerNextText);
 
-        SharedPreferences preferences = android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        SwitchCompat tst = findViewById(R.id.balckWhiteSwitch);
+        tst.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    previewNextLesson.setTextColor(getResources().getColor(R.color.black));
+                    previewDay.setTextColor(getResources().getColor(R.color.black));
+                    previewHour.setTextColor(getResources().getColor(R.color.black));
+                    previewLessonName.setTextColor(getResources().getColor(R.color.black));
+                    previewLocation.setTextColor(getResources().getColor(R.color.black));
+                    previewRoom.setTextColor(getResources().getColor(R.color.black));
+                    isBlack = true;
+                }
+                else
+                {
+                    previewNextLesson.setTextColor(getResources().getColor(R.color.white));
+                    previewDay.setTextColor(getResources().getColor(R.color.white));
+                    previewHour.setTextColor(getResources().getColor(R.color.white));
+                    previewLessonName.setTextColor(getResources().getColor(R.color.white));
+                    previewLocation.setTextColor(getResources().getColor(R.color.white));
+                    previewRoom.setTextColor(getResources().getColor(R.color.white));
+                    isBlack = false;
+                }
+            }
+        });
+
+        SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
 
         Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+        if(favoritePath==null)
+            favoritePath = new LinkedHashSet<>();
+
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> listNext = new ArrayList<>();
         spinnerItemToPath = new HashMap<>();
@@ -241,7 +297,7 @@ public class WidgetParametersActivity extends AppCompatActivity {
                             Color.green(backgroundColor),
                             Color.blue(backgroundColor)))
                     .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-                    .density(12)
+                    .density(15)
                     .showAlphaSlider(false)
                     .setOnColorSelectedListener(selectedColor -> {
                     })
@@ -259,6 +315,50 @@ public class WidgetParametersActivity extends AppCompatActivity {
                     .build()
                     .show();
         });
+
+        //check the external storage permission, if not granted --> open the request permission window
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //get the result of the permission request
+        switch (requestCode){
+            case  0:{
+                //show a message depending of the result of the request
+                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    message(getString(R.string.permission_granted));
+                    DataCsvManager.getInstance().getCsvFile(this);
+                    spinnerItemToPath = new HashMap<>();
+
+                    SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+
+                    Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+                    ArrayList<String> list = new ArrayList<>();
+
+                    for (String str : favoritePath) {
+                        String[] splited = str.split("/");
+                        list.add(splited[splited.length-1]);
+                        spinnerItemToPath.put(splited[splited.length-1],str);
+                    }
+
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getBaseContext(),R.layout.spinner_item, list);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerParamFile.setAdapter(arrayAdapter);
+
+                }
+                else
+                {
+                    message(getString(R.string.permission_not_granted));
+                    this.finish();
+                }
+                break;
+            }
+        }
     }
 
     @Override
