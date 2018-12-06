@@ -28,29 +28,35 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.lucblender.lucasbonvin.widgettest.R;
 import com.lucblender.lucasbonvin.widgettest.UpdateService;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-public class ScreenSliderActivity  extends AppCompatActivity implements AppPreferenceFragment.PreferenceListener {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+public class ScreenSliderActivity  extends AppCompatActivity implements AppPreferenceFragment.PreferenceListener, EditorFragment.screenScrollInterface {
 
     private static final String TAG = ScreenSliderActivity.class.getName();
 
@@ -59,6 +65,10 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
     private static final int NUM_PAGES = 2;
 
     private ViewPager mPager;
+
+    private int currentPageTemp = 0;
+    private int currentPage = 0;
+    private boolean sliding = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +111,56 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         mPager = findViewById(R.id.pager);
+
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(currentPage == 1 && !sliding) {
+                    sliding = true;
+                    List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+
+                    for(Fragment fragment : fragmentList) {
+                        if (fragment.getView().getTag() != null){
+                            if (fragment.getView().getTag().equals("EditorFragmentView")) {
+                                ((EditorFragment) fragment).hideFloatingActionMenu();
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPageTemp = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+                if(state == 0) {
+                    currentPage = currentPageTemp;
+                    sliding = false;
+                    if (currentPage == 1) {
+                        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+
+                        for(Fragment fragment : fragmentList) {
+                            if (fragment.getView().getTag() != null){
+                                if (fragment.getView().getTag().equals("EditorFragmentView")) {
+                                    ((EditorFragment) fragment).showFloatingActionMenu();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         TabLayout tabLayout = findViewById(R.id.tabDots);
         tabLayout.setupWithViewPager(mPager, true);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), this);
         mPager.setAdapter(mPagerAdapter);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
@@ -134,16 +189,46 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //get the result of the permission request
+        switch (requestCode){
+            case  0:{
+                //show a message depending of the result of the request
+                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    message(getString(R.string.permission_granted));
+                }
+                else
+                {
+                    message(getString(R.string.permission_not_granted));
+                    this.finish();
+                }
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void delegateScreenSlide() {
+        mPager.setCurrentItem(0, true);
+    }
+
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+
+        public EditorFragment.screenScrollInterface delegate;
+
+        public ScreenSlidePagerAdapter(FragmentManager fm, EditorFragment.screenScrollInterface delegate) {
             super(fm);
+            this.delegate = delegate;
         }
 
         @Override
         public Fragment getItem(int position) {
             //depending of position get one fragment or the other
-            if(position == 1)
+            if(position == 1) {
                 return new EditorFragment();
+            }
             else
                 return new AppPreferenceFragment();
         }
@@ -152,6 +237,22 @@ public class ScreenSliderActivity  extends AppCompatActivity implements AppPrefe
         public int getCount() {
             return NUM_PAGES;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbarmenuslide, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.helpSlideButton) {
+            CustomLayoutSimpleDialog helpDialog = new CustomLayoutSimpleDialog(this, R.layout.helpdialog);
+            helpDialog.show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

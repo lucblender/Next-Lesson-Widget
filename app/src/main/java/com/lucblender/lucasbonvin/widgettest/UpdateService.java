@@ -31,7 +31,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.lucblender.lucasbonvin.widgettest.Data.CustomPreferencesManager;
@@ -87,7 +86,6 @@ public class UpdateService extends JobService {
         int[] appWidgetIDs = appWidgetManager
                 .getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetLesson.class));
 
-        Log.e(TAG, "updateWidget: ");
         for (int i = 0 ; i < appWidgetIDs.length ; i++) {
             //get the view of the widget
             RemoteViews view = new RemoteViews(getPackageName(), R.layout.widget);

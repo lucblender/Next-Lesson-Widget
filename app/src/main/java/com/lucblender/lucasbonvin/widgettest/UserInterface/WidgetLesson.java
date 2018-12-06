@@ -61,6 +61,7 @@ public class WidgetLesson extends AppWidgetProvider {
             CustomPreferencesManager.getInstance().removeWidgetColor(context, appWidgetIds[i]);
             CustomPreferencesManager.getInstance().removeWidgetPathMap(context, appWidgetIds[i]);
             CustomPreferencesManager.getInstance().removeWidgetnextText(context, appWidgetIds[i]);
+            CustomPreferencesManager.getInstance().removeWidgetTextColor(context, appWidgetIds[i]);
         }
     }
 
@@ -69,6 +70,7 @@ public class WidgetLesson extends AppWidgetProvider {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         Map<String, String> colorIdMap = CustomPreferencesManager.getInstance().loadMap(context, "widgetColorMap");
+        Map<String, String> colorTextMap = CustomPreferencesManager.getInstance().loadMap(context, "widgetTextColortMap");
 
 
         for (int i = 0 ; i < appWidgetIds.length ; i++) {
@@ -77,14 +79,33 @@ public class WidgetLesson extends AppWidgetProvider {
             //create an intent to open the main activity class
 
             int backgroundColor = Color.argb(0,0,0,0);
+            boolean isBlack = false;
 
             if(colorIdMap.get(String.valueOf(appWidgetIds[i])) != null)
                 backgroundColor = Integer.valueOf(colorIdMap.get(String.valueOf(appWidgetIds[i])));
-            else
-                colorIdMap.put(String.valueOf(appWidgetIds[i]), String.valueOf(backgroundColor));
+
+            if(colorTextMap.get(String.valueOf(appWidgetIds[i])) != null)
+                isBlack = Boolean.valueOf(colorTextMap.get(String.valueOf(appWidgetIds[i])));
 
             views.setInt(R.id.widgetBackground, "setColorFilter", backgroundColor);
             views.setInt(R.id.widgetBackground, "setImageAlpha", Color.alpha(backgroundColor));
+
+            if(isBlack)
+            {
+                views.setTextColor(R.id.nextLessonWidget,Color.BLACK);
+                views.setTextColor(R.id.date,Color.BLACK);
+                views.setTextColor(R.id.time,Color.BLACK);
+                views.setTextColor(R.id.lesson,Color.BLACK);
+                views.setTextColor(R.id.location,Color.BLACK);
+                views.setTextColor(R.id.room,Color.BLACK);
+            }else{
+                views.setTextColor(R.id.nextLessonWidget,Color.WHITE);
+                views.setTextColor(R.id.date,Color.WHITE);
+                views.setTextColor(R.id.time,Color.WHITE);
+                views.setTextColor(R.id.lesson,Color.WHITE);
+                views.setTextColor(R.id.location,Color.WHITE);
+                views.setTextColor(R.id.room,Color.WHITE);
+            }
 
             Intent intent = new Intent("android.intent.action.MAIN");
             intent.addCategory("android.intent.category.LAUNCHER");

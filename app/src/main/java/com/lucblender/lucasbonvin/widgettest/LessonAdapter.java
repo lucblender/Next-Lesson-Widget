@@ -23,7 +23,6 @@ prior written authorization from Lucas Bonvin.
 
 package com.lucblender.lucasbonvin.widgettest;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +37,8 @@ import com.lucblender.lucasbonvin.widgettest.UserInterface.AddLessonDialog;
 import com.lucblender.lucasbonvin.widgettest.UserInterface.DeleteCustomDialog;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder>{
     private ArrayList<LessonLine> mLessonLines;
@@ -150,7 +151,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     }
 
 
-    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class LessonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private final String TAG = LessonViewHolder.class.getName();
 
         //create all textview and will link them to R
@@ -208,40 +209,40 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             super(itemView);
 
             //link all text view
-            timeMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeMon);
-            lessonMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonMon);
-            locationMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationMon);
-            roomMon = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomMon);
+            timeMon = itemView.findViewById(R.id.timeMon);
+            lessonMon = itemView.findViewById(R.id.lessonMon);
+            locationMon = itemView.findViewById(R.id.locationMon);
+            roomMon = itemView.findViewById(R.id.roomMon);
 
-            timeTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeTue);
-            lessonTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonTue);
-            locationTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationTue);
-            roomTue = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomTue);
+            timeTue = itemView.findViewById(R.id.timeTue);
+            lessonTue = itemView.findViewById(R.id.lessonTue);
+            locationTue = itemView.findViewById(R.id.locationTue);
+            roomTue = itemView.findViewById(R.id.roomTue);
 
-            timeWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeWed);
-            lessonWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonWed);
-            locationWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationWed);
-            roomWed = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomWed);
+            timeWed = itemView.findViewById(R.id.timeWed);
+            lessonWed = itemView.findViewById(R.id.lessonWed);
+            locationWed = itemView.findViewById(R.id.locationWed);
+            roomWed = itemView.findViewById(R.id.roomWed);
 
-            timeThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeThu);
-            lessonThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonThu);
-            locationThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationThu);
-            roomThu = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomThu);
+            timeThu = itemView.findViewById(R.id.timeThu);
+            lessonThu = itemView.findViewById(R.id.lessonThu);
+            locationThu = itemView.findViewById(R.id.locationThu);
+            roomThu = itemView.findViewById(R.id.roomThu);
 
-            timeFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeFri);
-            lessonFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonFri);
-            locationFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationFri);
-            roomFri = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomFri);
+            timeFri = itemView.findViewById(R.id.timeFri);
+            lessonFri = itemView.findViewById(R.id.lessonFri);
+            locationFri = itemView.findViewById(R.id.locationFri);
+            roomFri = itemView.findViewById(R.id.roomFri);
 
-            timeSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSat);
-            lessonSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSat);
-            locationSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSat);
-            roomSat = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSat);
+            timeSat = itemView.findViewById(R.id.timeSat);
+            lessonSat = itemView.findViewById(R.id.lessonSat);
+            locationSat = itemView.findViewById(R.id.locationSat);
+            roomSat = itemView.findViewById(R.id.roomSat);
 
-            timeSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.timeSun);
-            lessonSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.lessonSun);
-            locationSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.locationSun);
-            roomSun = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.roomSun);
+            timeSun = itemView.findViewById(R.id.timeSun);
+            lessonSun = itemView.findViewById(R.id.lessonSun);
+            locationSun = itemView.findViewById(R.id.locationSun);
+            roomSun = itemView.findViewById(R.id.roomSun);
 
             lessonMon.setSelected(true);
             lessonTue.setSelected(true);
@@ -267,13 +268,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             roomSat.setSelected(true);
             roomSun.setSelected(true);
 
-            layoutMON = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON);
-            layoutTUE = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE);
-            layoutWED = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED);
-            layoutTHU = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU);
-            layoutFRI = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI);
-            layoutSAT = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT);
-            layoutSUN = itemView.findViewById(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN);
+            layoutMON = itemView.findViewById(R.id.layoutMON);
+            layoutTUE = itemView.findViewById(R.id.layoutTUE);
+            layoutWED = itemView.findViewById(R.id.layoutWED);
+            layoutTHU = itemView.findViewById(R.id.layoutTHU);
+            layoutFRI = itemView.findViewById(R.id.layoutFRI);
+            layoutSAT = itemView.findViewById(R.id.layoutSAT);
+            layoutSUN = itemView.findViewById(R.id.layoutSUN);
 
             layoutMON.setOnClickListener(this);
             layoutTUE.setOnClickListener(this);
@@ -283,45 +284,53 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             layoutSAT.setOnClickListener(this);
             layoutSUN.setOnClickListener(this);
 
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, "Mon");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, "Tue");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED, "Wed");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU, "Thu");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI, "Fri");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT, "Sat");
-            idToDay.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN, "Sun");
+            layoutMON.setOnLongClickListener(this);
+            layoutTUE.setOnLongClickListener(this);
+            layoutWED.setOnLongClickListener(this);
+            layoutTHU.setOnLongClickListener(this);
+            layoutFRI.setOnLongClickListener(this);
+            layoutSAT.setOnLongClickListener(this);
+            layoutSUN.setOnLongClickListener(this);
 
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, timeMon);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, timeTue);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED, timeWed);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU, timeThu);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI, timeFri);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT, timeSat);
-            idToTimeTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN, timeSun);
+            idToDay.put(R.id.layoutMON, "Mon");
+            idToDay.put(R.id.layoutTUE, "Tue");
+            idToDay.put(R.id.layoutWED, "Wed");
+            idToDay.put(R.id.layoutTHU, "Thu");
+            idToDay.put(R.id.layoutFRI, "Fri");
+            idToDay.put(R.id.layoutSAT, "Sat");
+            idToDay.put(R.id.layoutSUN, "Sun");
 
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, lessonMon);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, lessonTue);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED, lessonWed);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU, lessonThu);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI, lessonFri);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT, lessonSat);
-            idToLessonTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN, lessonSun);
+            idToTimeTextView.put(R.id.layoutMON, timeMon);
+            idToTimeTextView.put(R.id.layoutTUE, timeTue);
+            idToTimeTextView.put(R.id.layoutWED, timeWed);
+            idToTimeTextView.put(R.id.layoutTHU, timeThu);
+            idToTimeTextView.put(R.id.layoutFRI, timeFri);
+            idToTimeTextView.put(R.id.layoutSAT, timeSat);
+            idToTimeTextView.put(R.id.layoutSUN, timeSun);
 
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, locationMon);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, locationTue);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED, locationWed);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU, locationThu);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI, locationFri);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT, locationSat);
-            idToCityTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN, locationSun);
+            idToLessonTextView.put(R.id.layoutMON, lessonMon);
+            idToLessonTextView.put(R.id.layoutTUE, lessonTue);
+            idToLessonTextView.put(R.id.layoutWED, lessonWed);
+            idToLessonTextView.put(R.id.layoutTHU, lessonThu);
+            idToLessonTextView.put(R.id.layoutFRI, lessonFri);
+            idToLessonTextView.put(R.id.layoutSAT, lessonSat);
+            idToLessonTextView.put(R.id.layoutSUN, lessonSun);
 
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutMON, roomMon);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE, roomTue);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutWED, roomWed);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU, roomThu);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI, roomFri);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT, roomSat);
-            idToRoomTextView.put(com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN, roomSun);
+            idToCityTextView.put(R.id.layoutMON, locationMon);
+            idToCityTextView.put(R.id.layoutTUE, locationTue);
+            idToCityTextView.put(R.id.layoutWED, locationWed);
+            idToCityTextView.put(R.id.layoutTHU, locationThu);
+            idToCityTextView.put(R.id.layoutFRI, locationFri);
+            idToCityTextView.put(R.id.layoutSAT, locationSat);
+            idToCityTextView.put(R.id.layoutSUN, locationSun);
+
+            idToRoomTextView.put(R.id.layoutMON, roomMon);
+            idToRoomTextView.put(R.id.layoutTUE, roomTue);
+            idToRoomTextView.put(R.id.layoutWED, roomWed);
+            idToRoomTextView.put(R.id.layoutTHU, roomThu);
+            idToRoomTextView.put(R.id.layoutFRI, roomFri);
+            idToRoomTextView.put(R.id.layoutSAT, roomSat);
+            idToRoomTextView.put(R.id.layoutSUN, roomSun);
 
         }
 
@@ -331,13 +340,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             final int position = this.getLayoutPosition();
             final View view = v;
             switch (v.getId()) {
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
+                case R.id.layoutMON:
+                case R.id.layoutTUE:
+                case R.id.layoutWED:
+                case R.id.layoutTHU:
+                case R.id.layoutFRI:
+                case R.id.layoutSAT:
+                case R.id.layoutSUN:
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         //setup a popup to prevent miss-click
@@ -367,13 +376,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         private boolean modifyItem(View v) {
             final int position = this.getLayoutPosition();
             switch (v.getId()) {
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
+                case R.id.layoutMON:
+                case R.id.layoutTUE:
+                case R.id.layoutWED:
+                case R.id.layoutTHU:
+                case R.id.layoutFRI:
+                case R.id.layoutSAT:
+                case R.id.layoutSUN:
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         String lesson = idToLessonTextView.get(v.getId()).getText().toString();
@@ -395,13 +404,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
         private boolean duplicateItem(View v) {
             switch (v.getId()) {
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutMON:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTUE:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutWED:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutTHU:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutFRI:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSAT:
-                case com.lucblender.lucasbonvin.widgettest.R.id.layoutSUN:
+                case R.id.layoutMON:
+                case R.id.layoutTUE:
+                case R.id.layoutWED:
+                case R.id.layoutTHU:
+                case R.id.layoutFRI:
+                case R.id.layoutSAT:
+                case R.id.layoutSUN:
                     //when clicked on a layout, will check if the hours is not '-' --> mean lesson
                     if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                         String lesson = idToLessonTextView.get(v.getId()).getText().toString();
@@ -422,6 +431,17 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
         @Override
         public void onClick(View v) {
+            showPopupFullItem(v);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            showPopupFullItem(v);
+            return true;
+        }
+
+        void showPopupFullItem(View v)
+        {
             if (!idToTimeTextView.get(v.getId()).getText().toString().equals(" - ")) {
                 //creating a popup menu
                 PopupMenu popup = new PopupMenu(v.getContext(), v);
@@ -445,5 +465,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             }
         }
     }
+
 
 }

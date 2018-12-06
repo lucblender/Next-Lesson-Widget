@@ -2,7 +2,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:tag="EditorFragmentView">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:gravity="center"
@@ -63,12 +64,11 @@
                 android:layout_weight="1"
                 android:paddingLeft="15dp"/>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recyclerView"/>
     </LinearLayout>
-
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_menu"
         android:layout_width="wrap_content"
@@ -79,12 +79,14 @@
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         app:menu_fab_size="normal"
-        app:menu_showShadow="false"
+        app:menu_showShadow="true"
         app:menu_colorNormal="?android:colorAccent"
         app:menu_colorPressed="?colorPrimary"
         app:menu_colorRipple="?colorPrimaryDark"
         app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
         app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        app:menu_fab_show_animation="@anim/fab_slide_custom_show"
+        app:menu_fab_hide_animation="@anim/fab_slide_custom_hide"
         app:menu_labels_textColor="?android:textColorPrimary"
         app:menu_labels_colorNormal="?android:colorPrimaryDark"
         app:menu_labels_colorPressed="?colorPrimary"
@@ -125,17 +127,6 @@
             app:fab_colorRipple="?colorAccent"
             app:fab_size="mini"
             app:fab_label="@string/delete_all" />
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/floating_menu_Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_test_plus"
-            android:tint="?android:textColorPrimary"
-            app:fab_colorNormal="?android:colorPrimaryDark"
-            app:fab_colorPressed="?colorPrimary"
-            app:fab_colorRipple="?colorAccent"
-            app:fab_size="mini"
-            app:fab_label="@string/help" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

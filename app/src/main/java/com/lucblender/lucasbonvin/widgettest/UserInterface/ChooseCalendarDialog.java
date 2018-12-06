@@ -28,7 +28,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceManager;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,6 +43,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
+
+import androidx.preference.PreferenceManager;
 
 public class ChooseCalendarDialog extends Dialog {
 
@@ -87,6 +88,8 @@ public class ChooseCalendarDialog extends Dialog {
                 editor.putStringSet("favoritePath",  pathSet);
                 editor.apply();
                 favoritePath = preferences.getStringSet("favoritePath",null);
+                if(favoritePath==null)
+                    favoritePath = new LinkedHashSet<>();
             }
 
             for (String s : favoritePath) {

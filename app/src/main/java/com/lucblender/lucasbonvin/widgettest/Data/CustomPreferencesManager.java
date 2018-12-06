@@ -83,6 +83,13 @@ public class CustomPreferencesManager {
             editor.putString("widgetNextTextMap", "");
             editor.apply();
         }
+
+        String widgetTextColortMap = preferences.getString("widgetTextColortMap",null);
+
+        if(widgetNextTextMap == null) {
+            editor.putString("widgetTextColortMap", "");
+            editor.apply();
+        }
     }
 
     public void addWidgetColor(Context context, int id, int color)
@@ -125,6 +132,20 @@ public class CustomPreferencesManager {
         Map<String, String> myMap = loadMap(context, "widgetNextTextMap");
         myMap.remove(String.valueOf(id));
         saveMap(context, myMap, "widgetNextTextMap");
+    }
+
+    public void addWidgetTextColor(Context context, int id, Boolean isBlack)
+    {
+        Map<String, String> myMap = loadMap(context, "widgetTextColortMap");
+        myMap.put(String.valueOf(id), String.valueOf(isBlack));
+        saveMap(context, myMap, "widgetTextColortMap");
+    }
+
+    public void removeWidgetTextColor(Context context, int id)
+    {
+        Map<String, String> myMap = loadMap(context, "widgetTextColortMap");
+        myMap.remove(String.valueOf(id));
+        saveMap(context, myMap, "widgetTextColortMap");
     }
 
     private void saveMap(Context context, Map<String,String> inputMap, String preferenceKey){

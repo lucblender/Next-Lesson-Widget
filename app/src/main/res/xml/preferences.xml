@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <Preference
         android:title="@string/choose_csv"
         android:summary="%s"
         android:key="filePicker"
+        app:iconSpaceReserved="false"
         />
     <Preference
         android:title="@string/open_file"
         android:summary="@string/open_csv"
         android:key="fileOpen"
+        app:iconSpaceReserved="false"
         />
     <Preference
     android:title="@string/send_file"
     android:summary="@string/send_planning"
     android:key="sendFile"
+        app:iconSpaceReserved="false"
     />
     <ListPreference
         android:key="param_language"
@@ -22,6 +26,7 @@
         android:entries="@array/list_lang_entries"
         android:entryValues="@array/list_lang_values"
         android:summary="%s"
+        app:iconSpaceReserved="false"
         />
     <ListPreference
         android:key="param_theme"
@@ -30,15 +35,12 @@
         android:entries="@array/list_theme_entries"
         android:entryValues="@array/list_theme_values"
         android:summary="%s"
-        />
-    <Preference
-        android:title="@string/help"
-        android:summary=""
-        android:key="help"
+        app:iconSpaceReserved="false"
         />
     <Preference
         android:title="@string/about"
         android:summary=""
         android:key="about"
+        app:iconSpaceReserved="false"
         />
 </PreferenceScreen>

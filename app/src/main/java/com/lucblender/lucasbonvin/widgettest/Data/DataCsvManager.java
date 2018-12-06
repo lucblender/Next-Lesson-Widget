@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -573,6 +574,7 @@ public class DataCsvManager extends Observable{
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         prefFile.URI  = URI;
 
+
         if(prefFile.URI.equals("NA"))
         {
             File folder = new File(Environment.getExternalStorageDirectory()+defaultFolder);
@@ -594,6 +596,16 @@ public class DataCsvManager extends Observable{
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("filePicker", prefFile.URI);
                 editor.apply();
+
+                //add it to the calendar collection
+                Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+                if(favoritePath==null)
+                    favoritePath = new LinkedHashSet<>();
+
+                favoritePath.add(prefFile.URI);
+                editor.putStringSet("favoritePath",  favoritePath);
+                editor.apply();
+
             }
             catch (Exception e)
             {
@@ -648,10 +660,14 @@ public class DataCsvManager extends Observable{
 
             //add it to the calendar collection
             Set<String> favoritePath = preferences.getStringSet("favoritePath",null);
+            if(favoritePath==null)
+                favoritePath = new LinkedHashSet<>();
 
             favoritePath.add(filePath);
             editor.putStringSet("favoritePath",  favoritePath);
             editor.apply();
+
+            
 
             setChanged();
             notifyObservers();

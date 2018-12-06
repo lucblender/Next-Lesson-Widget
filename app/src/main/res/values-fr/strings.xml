@@ -95,7 +95,7 @@
     <string name="widget_customization">Personnalisation du widget</string>
     <string name="preview">Aperçu</string>
     <string name="choose_color">Choix de couleur</string>
-    <string name="alpha">Alpha</string>
+    <string name="alpha">Alpha de l\'arrière plan</string>
     <string name="next">Next</string>
     <string name="planning_file">Fichier de planning</string>
     <string name="ok">OK</string>
@@ -103,8 +103,9 @@
     <string name="help_widget_param_text_2">Vous pouvez modifier :</string>
     <string name="help_widget_param_text_3">• la couleur de fond </string>
     <string name="help_widget_param_text_4">• la transparence du fond </string>
-    <string name="help_widget_param_text_5">• le label : Next...</string>
+    <string name="help_widget_param_text_5">• le label : Next…</string>
     <string name="help_widget_param_text_6">• le fichier de planning</string>
+    <string name="text_color">Couleur du texte</string>
 
 
 </resources>

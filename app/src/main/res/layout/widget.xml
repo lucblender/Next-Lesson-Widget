@@ -5,7 +5,7 @@
     <ImageView
         android:layout_width="72dp"
         android:layout_height="85dp"
-        android:tint="#5d2961"
+        android:tint="@color/black"
         android:src="@drawable/layout_bg"
         android:id="@+id/widgetBackground"/>
     <LinearLayout

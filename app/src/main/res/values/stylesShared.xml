@@ -12,12 +12,15 @@
         <item name="android:colorBackground">?ThemeColorPrimary</item>
         <item name="borderHighlight">?ThemeBorderHighlight</item>
         <item name="borderNoHighlight">?ThemeBorderNoHighlight</item>
+        <item name="android:listViewStyle">@style/MyDialogThemeShared</item>
 
         <item name="alertDialogTheme">@style/MyDialogThemeShared</item>
         <item name="actionBarTheme">@style/ActionBarShared</item>
-
-        <item name="actionBarPopupTheme">@style/PopupMenuShared</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <item name="android:popupMenuStyle">@style/PopupContextMenuShared</item>
+        <item name="android:itemTextAppearance">@style/PopupContextMenuSharedText</item>
+        <item name="actionBarPopupTheme">@style/PopupMenuShared</item>
         <item name="actionBarStyle">@style/WidgetActionBarShared</item>
         <item name="logo_lb">@mipmap/ic_lb_logo</item>
     </style>
@@ -52,11 +55,26 @@
         <item name="background">?ThemeColorAccent</item>
         <item name="android:colorBackground">?ThemeColorAccent</item>
         <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
+        <item name="android:popupBackground">?ThemeColorPrimaryDark</item>
+    </style>
+
+    <style name="PopupContextMenuShared" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupBackground">?ThemeColorPrimaryDark</item>
+    </style>
+
+    <style name="PopupContextMenuSharedText">
+        <item name="android:textColor">?ThemeColorTextPrimary</item>
     </style>
 
     <style name="WidgetActionBarShared" parent="Widget.AppCompat.ActionBar.Solid">
         <item name="android:textColor">?ThemeColorTextMain</item>
         <item name="android:textColorPrimary">?ThemeColorTextPrimary</item>
         <item name="elevation">4dp</item>
+    </style>
+
+    <style name="SwitchStyleShared" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorControlActivated">@color/black</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">?ThemeColorAccent</item>
     </style>
 </resources>

@@ -110,7 +110,7 @@
     <string name="widget_customization">Widget Customization</string>
     <string name="preview">Preview</string>
     <string name="choose_color">Choose Color</string>
-    <string name="alpha">Alpha</string>
+    <string name="alpha">Background Alpha</string>
     <string name="next">Next</string>
     <string name="planning_file">Planning File</string>
     <string name="ok">OK</string>
@@ -118,7 +118,8 @@
     <string name="help_widget_param_text_2">You can modify:</string>
     <string name="help_widget_param_text_3">• the background color</string>
     <string name="help_widget_param_text_4">• the background alpha</string>
-    <string name="help_widget_param_text_5">• the label : Next...</string>
+    <string name="help_widget_param_text_5">• the label : Next…</string>
     <string name="help_widget_param_text_6">• the planning file</string>
+    <string name="text_color">Text Color</string>
 
 </resources>

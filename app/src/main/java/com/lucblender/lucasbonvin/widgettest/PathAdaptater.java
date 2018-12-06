@@ -28,7 +28,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,8 +67,6 @@ public class PathAdaptater extends ArrayAdapter<PathItem> implements View.OnClic
 
     @Override
     public void onClick(View v) {
-
-        Log.e(TAG, "onClick: " );
 
         int position=(Integer) v.getTag();
 
